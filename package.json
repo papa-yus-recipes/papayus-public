@@ -1,0 +1,52 @@
+{
+  "name": "floer-soloer",
+  "version": "1.0.0",
+  "description": "Template for FloerSoloer, by FloerSoloer",
+  "license": "ISC",
+  "author": "FloerSoloer",
+  "repository": "https://github.com/FloerSoloer/FloerSoloer",
+  "private": true,
+  "main": "src/index.ts",
+  "engines": {
+    "node": "^16.9.1"
+  },
+  "scripts": {
+    "start:prod": "node -r ts-node/register/transpile-only -r tsconfig-paths/register dist/src/index.js",
+    "start:dev": "nodemon",
+    "lint": "eslint .",
+    "lint:fix": "prettier --write --loglevel silent . && eslint --fix .",
+    "prepare": "husky install",
+    "build": "tsc",
+    "commit": "cz"
+  },
+  "dependencies": {
+    "dotenv-safe": "^8.2.0"
+  },
+  "devDependencies": {
+    "@types/dotenv-safe": "^8.1.2",
+    "@types/node": "^16.10.3",
+    "@typescript-eslint/eslint-plugin": "^4.32.0",
+    "@typescript-eslint/parser": "^4.32.0",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.0",
+    "lint-staged": "^11.2.0",
+    "node": "^16.9.1",
+    "nodemon": "^2.0.13",
+    "prettier": "^2.3.2",
+    "ts-node": "^10.2.1",
+    "tsconfig-paths": "^3.11.0",
+    "typescript": "^4.4.3",
+    "yarn": "^1.22.15"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
