@@ -11,11 +11,11 @@
     "node": "^16.9.1"
   },
   "scripts": {
-    "start:prod": "node -r ts-node/register/transpile-only -r tsconfig-paths/register dist/src/index.js",
-    "start:dev": "nodemon",
     "lint": "eslint .",
     "lint:fix": "prettier --write --loglevel silent . && eslint --fix .",
     "prepare": "husky install",
+    "start:dev": "nodemon",
+    "start:prod": "node -r ts-node/register/transpile-only -r tsconfig-paths/register dist/src/index.js",
     "build": "tsc",
     "commit": "cz"
   },
@@ -43,10 +43,5 @@
     "tsconfig-paths": "^3.11.0",
     "typescript": "^4.4.3",
     "yarn": "^1.22.15"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   }
 }
