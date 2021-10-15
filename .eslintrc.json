@@ -32,7 +32,7 @@
         }
       }
     ],
-    "one-var": ["error", "consecutive"]
+    "one-var": ["error", "never"]
   },
   "settings": {
     "import/parsers": {
