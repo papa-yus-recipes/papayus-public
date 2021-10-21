@@ -10,14 +10,16 @@
   "engines": {
     "node": "^16.9.1"
   },
+  "type": "module",
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "prettier --write --loglevel silent . && eslint --fix .",
     "prepare": "husky install",
-    "start:dev": "nodemon",
+    "start:dev": "node --loader ts-node/esm src/index.ts",
     "start:prod": "node -r ts-node/register/transpile-only -r tsconfig-paths/register dist/src/index.js",
     "build": "tsc",
-    "commit": "cz"
+    "commit": "cz",
+    "dev": "nodemon"
   },
   "dependencies": {
     "dotenv-safe": "^8.2.0"
@@ -36,7 +38,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "husky": "^7.0.0",
     "lint-staged": "^11.2.0",
-    "node": "^16.9.1",
+    "node": "^16.11.1",
     "nodemon": "^2.0.13",
     "prettier": "^2.3.2",
     "ts-node": "^10.2.1",
