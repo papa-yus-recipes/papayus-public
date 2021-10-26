@@ -1,0 +1,9 @@
+{
+  "extends": "..",
+  "compilerOptions": {
+    "composite": true,
+    "lib": ["DOM"],
+    "noEmit": false
+  },
+  "include": ["."]
+}
