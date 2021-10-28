@@ -6,7 +6,7 @@
   "author": "FloerSoloer",
   "repository": "https://github.com/FloerSoloer/FloerSoloer",
   "private": true,
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "engines": {
     "node": "^16.9.1"
   },
@@ -16,7 +16,7 @@
     "lint:fix": "prettier --write --loglevel silent . && eslint --fix .",
     "prepare": "husky install",
     "serve": "yarn run build & yarn start",
-    "start": "node -r ts-node/register/transpile-only -r tsconfig-paths/register dist/src/index.js",
+    "start": "node -r ts-node/register/transpile-only -r tsconfig-paths/register dist/index.js",
     "start:dev": "node --loader ts-node/esm src/index.ts",
     "test": "jest",
     "build": "yarn run build:public && yarn run build:src",
