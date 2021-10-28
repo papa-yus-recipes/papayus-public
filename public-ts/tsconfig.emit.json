@@ -1,0 +1,8 @@
+{
+  "extends": ".",
+  "compilerOptions": {
+    "composite": false,
+    "noEmit": false,
+    "outDir": "../public"
+  }
+}

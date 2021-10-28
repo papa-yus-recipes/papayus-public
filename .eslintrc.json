@@ -2,8 +2,7 @@
   "root": true,
   "env": {
     "es2021": true,
-    "node": true,
-    "jest": true
+    "node": true
   },
   "extends": [
     "eslint:recommended",
@@ -41,9 +40,48 @@
     },
     "import/resolver": {
       "typescript": {
-        "alwaysTryTypes": true,
-        "project": "./tsconfig.json"
+        "alwaysTryTypes": true
       }
     }
-  }
+  },
+  "ignorePatterns": "*.js",
+  "overrides": [
+    {
+      "files": ["**/public-ts/**/*"],
+      "env": { "browser": true },
+      "parserOptions": { "project": "./public-ts/tsconfig.json" },
+      "settings": {
+        "import/resolver": {
+          "typescript": {
+            "project": "./public-ts/tsconfig.json"
+          }
+        }
+      }
+    },
+    {
+      "files": ["**/src/**/*"],
+      "parserOptions": { "project": "./src/tsconfig.json" },
+      "settings": {
+        "import/resolver": {
+          "typescript": {
+            "project": "./src/tsconfig.json",
+            "moduleDirectory": ["node_modules", "src"]
+          }
+        }
+      }
+    },
+    {
+      "files": ["**/tests/**/*"],
+      "env": { "jest": true },
+      "parserOptions": { "project": "./tests/tsconfig.json" },
+      "settings": {
+        "import/resolver": {
+          "typescript": {
+            "alwaysTryTypes": true,
+            "moduleDirectory": ["node_modules", "src", "public"]
+          }
+        }
+      }
+    }
+  ]
 }

@@ -18,7 +18,8 @@
     "start:dev": "node --loader ts-node/esm src/index.ts",
     "start:prod": "node -r ts-node/register/transpile-only -r tsconfig-paths/register dist/src/index.js",
     "test": "jest",
-    "build": "tsc",
+    "build:public": "tsc -p public-ts/tsconfig.emit.json",
+    "build:src": "tsc -p src/tsconfig.emit.json",
     "commit": "cz",
     "dev": "nodemon"
   },
