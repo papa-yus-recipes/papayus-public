@@ -2,10 +2,9 @@
   "extends": "..",
   "compilerOptions": {
     "baseUrl": ".",
-    "composite": true,
     "lib": ["ES2021", "DOM", "DOM.Iterable"],
     "noEmit": false,
-    "paths": { "@/*": ["*"] }
+    "outDir": "../public"
   },
   "include": ["."]
 }

@@ -2,9 +2,9 @@
   "extends": "..",
   "compilerOptions": {
     "baseUrl": ".",
-    "composite": true,
+    "declaration": true,
     "noEmit": false,
-    "paths": { "@/*": ["*"] }
+    "outDir": "../dist"
   },
   "include": ["."]
 }

@@ -20,8 +20,8 @@
     "start:dev": "node --loader ts-node/esm src/index.ts",
     "test": "jest",
     "build": "yarn run build:public && yarn run build:src",
-    "build:public": "tsc -p public-ts/tsconfig.emit.json",
-    "build:src": "tsc -p src/tsconfig.emit.json",
+    "build:public": "tsc -p public-ts/tsconfig.json",
+    "build:src": "tsc -p src/tsconfig.json",
     "commit": "cz",
     "dev": "nodemon"
   },
