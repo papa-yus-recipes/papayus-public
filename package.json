@@ -6,21 +6,18 @@
   "author": "FloerSoloer",
   "repository": "https://github.com/FloerSoloer/FloerSoloer",
   "private": true,
-  "main": "dist/index.js",
-  "engines": {
-    "node": "^16.11.1"
-  },
+  "main": "dist/bundle.js",
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "prettier --write --loglevel silent . && eslint --fix .",
     "prepare": "husky install",
     "serve": "yarn run build & yarn start",
-    "start": "node -r ts-node/register/transpile-only -r tsconfig-paths/register dist/index.js",
-    "start:dev": "node --loader ts-node/esm src/index.ts",
+    "start": "node dist/bundle.js",
+    "start:dev": "ts-node -P src/tsconfig.json -r tsconfig-paths/register src/index.ts",
     "test": "jest",
     "build": "yarn run build:public && yarn run build:src",
-    "build:public": "tsc -p public-ts",
-    "build:src": "tsc -p src",
+    "build:public": "webpack --config-name public",
+    "build:src": "webpack --config-name src",
     "commit": "cz",
     "dev": "nodemon"
   },
@@ -33,6 +30,7 @@
     "@types/express": "^4.17.13",
     "@types/jest": "^27.0.3",
     "@types/node": "^16.11.10",
+    "@types/webpack": "^5.28.0",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "commitizen": "^4.2.4",
@@ -48,12 +46,13 @@
     "node": "^16.11.1",
     "nodemon": "^2.0.15",
     "prettier": "^2.4.1",
+    "tsconfig-paths": "^3.12.0",
     "ts-jest": "^27.0.7",
     "ts-loader": "^9.2.6",
     "ts-node": "^10.4.0",
-    "tsc-files": "^1.1.3",
-    "tsconfig-paths": "^3.12.0",
     "typescript": "^4.5.2",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1",
     "yarn": "^1.22.17"
   },
   "config": {
@@ -66,8 +65,7 @@
       "prettier --write"
     ],
     "*.ts": [
-      "eslint --fix",
-      "tsc-files --noEmit"
+      "eslint --fix"
     ]
   },
   "nodemonConfig": {
@@ -76,6 +74,6 @@
       "public"
     ],
     "ext": "ts,js,html,css",
-    "exec": "node --loader ts-node/esm src/index.ts"
+    "exec": "yarn start:dev"
   }
 }

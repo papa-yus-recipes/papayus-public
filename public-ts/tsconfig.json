@@ -2,9 +2,8 @@
   "extends": "..",
   "compilerOptions": {
     "baseUrl": ".",
-    "lib": ["ES2021", "DOM", "DOM.Iterable"],
-    "noEmit": false,
-    "outDir": "../public"
+    "lib": ["DOM", "DOM.Iterable"],
+    "noEmit": false
   },
   "include": ["."]
 }

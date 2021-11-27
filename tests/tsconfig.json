@@ -1,9 +1,6 @@
 {
   "extends": "..",
   "compilerOptions": {
-    "baseUrl": "..",
-    "lib": ["ES2021", "DOM", "DOM.Iterable"],
     "types": ["jest", "node"]
-  },
-  "include": [".", "../public-ts", "../src"]
+  }
 }
