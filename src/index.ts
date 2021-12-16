@@ -1,9 +1,9 @@
-import { config } from "dotenv-safe";
 import express, { static as serve } from "express";
 
-// Initialize environment variables.
-config();
+import { express_config } from "configs";
 
-express()
-  .use(serve("public"))
-  .listen(+(<string>process.env["PORT"]), <string>process.env["ADDRESS"]);
+const { port, hostname } = express_config;
+
+const server = express();
+
+server.use(serve("public")).listen(port, hostname);
