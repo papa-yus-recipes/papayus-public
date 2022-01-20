@@ -1,7 +1,8 @@
 node_modules
 
-# TypeScript Emits
+# Emits
 dist
+bundle.js
 
 # Credentials
 .env
