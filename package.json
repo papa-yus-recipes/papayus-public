@@ -13,14 +13,14 @@
     "prepare": "husky install",
     "serve": "yarn build && yarn start",
     "start": "cross-env NODE_PATH=dist node dist/index.js",
-    "start:dev": "ts-node -P src/tsconfig.json -r tsconfig-paths/register src/index.ts",
+    "start:dev": "ts-node -P server/tsconfig.json -r tsconfig-paths/register server/index.ts",
     "test": "jest",
-    "build": "yarn build:public && yarn build:src",
-    "build:src": "tsc -p src",
-    "build:public": "webpack",
+    "build": "yarn build:client && yarn build:server",
+    "build:server": "tsc -p server",
+    "build:client": "webpack",
     "commit": "cz",
-    "dev:src": "nodemon --config src/nodemon.json",
-    "dev:public": "nodemon --config public-ts/nodemon.json"
+    "dev:server": "nodemon --config server/nodemon.json",
+    "dev:client": "nodemon --config client/nodemon.json"
   },
   "dependencies": {
     "dotenv-safe": "^8.2.0",

@@ -2,10 +2,10 @@ import { resolve } from "path";
 
 import type { Configuration } from "webpack";
 
-const include = [resolve("public-ts")];
+const include = [resolve("client")];
 
 const config: Configuration = {
-  entry: "./public-ts/index.ts",
+  entry: "./client/index.ts",
   module: {
     rules: [
       {

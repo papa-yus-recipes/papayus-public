@@ -47,17 +47,17 @@
   "ignorePatterns": "*.js",
   "overrides": [
     {
-      "files": ["**/public-ts/**/*"],
+      "files": ["**/client/**/*"],
       "env": { "browser": true },
-      "parserOptions": { "project": "./public-ts/tsconfig.json" }
+      "parserOptions": { "project": "./client/tsconfig.json" }
     },
     {
-      "files": ["**/src/**/*"],
-      "parserOptions": { "project": "./src/tsconfig.json" },
+      "files": ["**/server/**/*"],
+      "parserOptions": { "project": "./server/tsconfig.json" },
       "settings": {
         "import/resolver": {
           "typescript": {
-            "moduleDirectory": ["node_modules", "src"]
+            "moduleDirectory": ["node_modules", "server"]
           }
         }
       }
@@ -69,7 +69,7 @@
       "settings": {
         "import/resolver": {
           "typescript": {
-            "moduleDirectory": ["node_modules", "src", "tests"]
+            "moduleDirectory": ["node_modules", "server", "tests"]
           }
         }
       }
