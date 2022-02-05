@@ -19,6 +19,7 @@
     "build:server": "tsc -p server",
     "build:client": "webpack",
     "commit": "cz",
+    "dev": "nodemon",
     "dev:server": "nodemon --config server/nodemon.json",
     "dev:client": "nodemon --config client/nodemon.json"
   },
