@@ -1,4 +1,3 @@
-import { randomUUID } from "crypto";
 import dynamoose from "dynamoose";
 
 import type { Document } from "dynamoose/dist/Document";
@@ -6,6 +5,7 @@ import type { Document } from "dynamoose/dist/Document";
 import { aws_config } from "configs";
 
 import { Tag } from "./Tag";
+import { id, rangeKey } from "./definitions";
 
 interface IIngredient {
   main: string;
@@ -31,15 +31,8 @@ interface IRecipe extends Document {
 export const Recipe = dynamoose.model<IRecipe>(
   "recipe",
   new dynamoose.Schema({
-    id: {
-      type: String,
-      default: () => randomUUID()
-    },
-    name: {
-      type: String,
-      rangeKey: true,
-      required: true
-    },
+    id,
+    name: rangeKey,
     description: { type: String, required: true },
     image_id: { type: String, required: true },
     tags: {

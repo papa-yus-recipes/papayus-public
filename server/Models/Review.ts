@@ -1,9 +1,10 @@
-import { randomUUID } from "crypto";
 import dynamoose from "dynamoose";
 
 import type { Document } from "dynamoose/dist/Document";
 
 import { aws_config } from "configs";
+
+import { id, rangeKey } from "./definitions";
 
 interface IReview extends Document {
   id: string;
@@ -15,15 +16,8 @@ export const Review = dynamoose.model<IReview>(
   "review",
   new dynamoose.Schema(
     {
-      id: {
-        type: String,
-        default: () => randomUUID()
-      },
-      recipe: {
-        type: String,
-        rangeKey: true,
-        required: true
-      },
+      id,
+      recipe: rangeKey,
       user: {
         type: String,
         required: true

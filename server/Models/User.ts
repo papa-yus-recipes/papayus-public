@@ -1,9 +1,10 @@
-import { randomUUID } from "crypto";
 import dynamoose from "dynamoose";
 
 import type { Document } from "dynamoose/dist/Document";
 
 import { aws_config } from "configs";
+
+import { id } from "./definitions";
 
 interface IUser extends Document {
   id: string;
@@ -14,10 +15,7 @@ interface IUser extends Document {
 export const User = dynamoose.model<IUser>(
   "user",
   new dynamoose.Schema({
-    id: {
-      type: String,
-      default: () => randomUUID()
-    },
+    id,
     username: {
       type: String,
       rangeKey: true,

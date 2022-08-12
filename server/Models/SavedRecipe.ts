@@ -1,9 +1,10 @@
-import { randomUUID } from "crypto";
 import dynamoose from "dynamoose";
 
 import type { Document } from "dynamoose/dist/Document";
 
 import { aws_config } from "configs";
+
+import { id, rangeKey } from "./definitions";
 
 interface ISavedRecipe extends Document {
   id: string;
@@ -15,19 +16,12 @@ export const SavedRecipe = dynamoose.model<ISavedRecipe>(
   "saved_recipe",
   new dynamoose.Schema(
     {
-      id: {
-        type: String,
-        default: () => randomUUID()
-      },
+      id,
       recipe: {
         type: String,
         required: true
       },
-      user: {
-        type: String,
-        rangeKey: true,
-        required: true
-      }
+      user: rangeKey
     },
     { timestamps: { createdAt: "savedAt" } }
   ),
