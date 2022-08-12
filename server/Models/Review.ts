@@ -4,7 +4,7 @@ import type { Document } from "dynamoose/dist/Document";
 
 import { aws_config } from "configs";
 
-import { id, rangeKey } from "./definitions";
+import { between, id, rangeKey } from "./helpers";
 
 interface IReview extends Document {
   id: string;
@@ -22,8 +22,16 @@ export const Review = dynamoose.model<IReview>(
         type: String,
         required: true
       },
-      rating: { type: Number, required: true },
-      comment: { type: String, required: true }
+      rating: {
+        type: Number,
+        required: true,
+        validate: (rating) => Number.isInteger(rating) && between(<number>rating, 1, 5)
+      },
+      comment: {
+        type: String,
+        required: true,
+        validate: (comment) => between((<string>comment).length, 1, 150)
+      }
     },
     { timestamps: true }
   ),

@@ -14,3 +14,5 @@ export const rangeKey: Attribute = {
   rangeKey: true,
   required: true
 };
+
+export const between = (n: number, lower: number, upper: number) => n >= lower && n <= upper;

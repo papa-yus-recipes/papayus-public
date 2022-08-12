@@ -4,7 +4,7 @@ import type { Document } from "dynamoose/dist/Document";
 
 import { aws_config } from "configs";
 
-import { id, rangeKey } from "./definitions";
+import { id, rangeKey } from "./helpers";
 
 interface ISavedRecipe extends Document {
   id: string;

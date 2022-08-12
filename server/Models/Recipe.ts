@@ -5,7 +5,7 @@ import type { Document } from "dynamoose/dist/Document";
 import { aws_config } from "configs";
 
 import { Tag } from "./Tag";
-import { id, rangeKey } from "./definitions";
+import { id, rangeKey } from "./helpers";
 
 interface IIngredient {
   main: string;
@@ -40,8 +40,16 @@ export const Recipe = dynamoose.model<IRecipe>(
       schema: [Tag],
       required: true
     },
-    time: { type: Number, required: true },
-    servings: { type: Number, required: true },
+    time: {
+      type: Number,
+      required: true,
+      validate: Number.isInteger
+    },
+    servings: {
+      type: Number,
+      required: true,
+      validate: Number.isInteger
+    },
     ingredients: {
       type: Array,
       schema: [

@@ -4,7 +4,7 @@ import type { Document } from "dynamoose/dist/Document";
 
 import { aws_config } from "configs";
 
-import { id } from "./definitions";
+import { between, id } from "./helpers";
 
 interface IUser extends Document {
   id: string;
@@ -19,11 +19,7 @@ export const User = dynamoose.model<IUser>(
     username: {
       type: String,
       rangeKey: true,
-      validate: (username) => {
-        if (username === "_") return true;
-        const { length } = <string>username;
-        return length >= 3 && length <= 30;
-      },
+      validate: (username) => username === "_" || between((<string>username).length, 3, 30),
       default: "_"
     },
     password: String
