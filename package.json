@@ -24,11 +24,13 @@
     "dev:client": "nodemon --config client/nodemon.json"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv-safe": "^8.2.0",
     "dynamoose": "^2.8.6",
     "express": "^4.17.2"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/dotenv-safe": "^8.1.2",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.4.0",

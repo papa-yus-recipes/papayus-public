@@ -1,8 +1,9 @@
+import { hash } from "bcryptjs";
 import dynamoose from "dynamoose";
 
 import type { Document } from "dynamoose/dist/Document";
 
-import { aws_config } from "configs";
+import { aws_config, bcrypt_config } from "configs";
 
 import { between, id } from "./helpers";
 
@@ -22,7 +23,10 @@ export const User = dynamoose.model<IUser>(
       validate: (username) => username === "_" || between((<string>username).length, 3, 30),
       default: "_"
     },
-    password: String
+    password: {
+      type: String,
+      set: (password) => hash(<string>password, bcrypt_config.salt)
+    }
   }),
   { create: aws_config.dynamodb_config.create }
 );
