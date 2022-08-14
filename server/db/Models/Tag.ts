@@ -1,20 +1,17 @@
 import dynamoose from "dynamoose";
 
+import type { ITag } from "./Tag.types";
 import type { Document } from "dynamoose/dist/Document";
 
 import { aws_config } from "configs";
 
-interface ITag extends Document {
-  id: string;
-  name: string;
-  category: string;
-}
+import { rangeKey } from "./helpers";
 
-export const Tag = dynamoose.model<ITag>(
+export const Tag = dynamoose.model<ITag & Document>(
   "tag",
   new dynamoose.Schema({
     name: String,
-    category: String
+    category: rangeKey
   }),
   { create: aws_config.dynamodb_config.create }
 );
