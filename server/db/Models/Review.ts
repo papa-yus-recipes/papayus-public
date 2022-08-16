@@ -1,7 +1,6 @@
 import dynamoose from "dynamoose";
 
-import type { IReview } from "./Review.types";
-import type { Document } from "dynamoose/dist/Document";
+import type { ReviewDoc } from "./Review.types";
 
 import { aws_config } from "configs";
 
@@ -9,7 +8,7 @@ import { Recipe } from "./Recipe";
 import { User } from "./User";
 import { required } from "./helpers";
 
-export const Review = dynamoose.model<IReview & Document>(
+export const Review = dynamoose.model<ReviewDoc>(
   "review",
   new dynamoose.Schema(
     {

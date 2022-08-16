@@ -2,4 +2,6 @@ import type { IRecipe } from "./Models/Recipe.types";
 
 import { Recipe } from "./Models";
 
-export const getRecipe = (id: IRecipe["id"]) => Recipe.get(id);
+type RecipeKey = Pick<IRecipe, "id" | "name">;
+
+export const getRecipe = (key: RecipeKey) => Recipe.get(key);

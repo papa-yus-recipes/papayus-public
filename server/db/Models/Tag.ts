@@ -1,13 +1,12 @@
 import dynamoose from "dynamoose";
 
-import type { ITag } from "./Tag.types";
-import type { Document } from "dynamoose/dist/Document";
+import type { TagDoc } from "./Tag.types";
 
 import { aws_config } from "configs";
 
 import { rangeKey } from "./helpers";
 
-export const Tag = dynamoose.model<ITag & Document>(
+export const Tag = dynamoose.model<TagDoc>(
   "tag",
   new dynamoose.Schema({
     name: String,

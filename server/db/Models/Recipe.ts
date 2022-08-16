@@ -1,20 +1,18 @@
 import dynamoose from "dynamoose";
 
-import type { IRecipe } from "./Recipe.types";
-import type { Document } from "dynamoose/dist/Document";
+import type { RecipeDoc } from "./Recipe.types";
 
 import { aws_config } from "configs";
 
 import { Tag } from "./Tag";
 import { rangeKey } from "./helpers";
 
-export const Recipe = dynamoose.model<IRecipe & Document>(
+export const Recipe = dynamoose.model<RecipeDoc>(
   "recipe",
   new dynamoose.Schema({
     id: String,
     name: rangeKey,
     description: String,
-    image_id: String,
     tags: {
       type: Array,
       schema: [Tag]

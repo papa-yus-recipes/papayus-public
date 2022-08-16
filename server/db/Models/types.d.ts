@@ -18,6 +18,8 @@ export type AttributeType =
 
 export type AttributeDefinition = Exclude<SchemaDefinition[string], AttributeType | any[]>;
 
+export type Doc<T> = T & Document;
+
 export interface HasId {
   id: string;
 }

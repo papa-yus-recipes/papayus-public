@@ -1,7 +1,6 @@
 import dynamoose from "dynamoose";
 
-import type { ISavedRecipe } from "./SavedRecipe.types";
-import type { Document } from "dynamoose/dist/Document";
+import type { SavedRecipeDoc } from "./SavedRecipe.types";
 
 import { aws_config } from "configs";
 
@@ -9,7 +8,7 @@ import { Recipe } from "./Recipe";
 import { User } from "./User";
 import { required } from "./helpers";
 
-export const SavedRecipe = dynamoose.model<ISavedRecipe & Document>(
+export const SavedRecipe = dynamoose.model<SavedRecipeDoc>(
   "saved_recipe",
   new dynamoose.Schema(
     {
