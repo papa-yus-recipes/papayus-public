@@ -47,9 +47,18 @@
   "ignorePatterns": "*.js",
   "overrides": [
     {
-      "files": ["**/client/**/*"],
       "env": { "browser": true },
-      "parserOptions": { "project": "./client/tsconfig.json" }
+      "extends": ["react-app"],
+      "files": ["**/client/**/*"],
+      "parserOptions": { "project": "./client/tsconfig.json" },
+      "settings": {
+        "react": {
+          "version": "999.999.999"
+        }
+      },
+      "rules": {
+        "import/no-named-as-default-member": "off"
+      }
     },
     {
       "files": ["**/server/**/*"],

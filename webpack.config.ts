@@ -5,24 +5,28 @@ import type { Configuration } from "webpack";
 const include = [resolve("client")];
 
 const config: Configuration = {
-  entry: "./client/index.ts",
+  entry: {
+    index: "./client/index.tsx"
+  },
   module: {
     rules: [
       {
         include,
-        test: /\.ts$/,
+        test: /\.tsx?$/,
         use: "ts-loader"
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"]
       }
     ]
   },
   output: {
-    filename: "bundle.js",
-    path: resolve("public")
+    filename: "[name].js",
+    path: resolve("public/js")
   },
   resolve: {
-    extensions: [".ts", ".js"],
-    modules: include,
-    roots: include
+    extensions: [".tsx"]
   }
 };
 

@@ -2,8 +2,11 @@
   "extends": "..",
   "compilerOptions": {
     "baseUrl": ".",
-    "declaration": true,
+    "module": "Node16",
+    "moduleResolution": "Node16",
     "noEmit": false,
+    "noUnusedLocals": true,
+    "target": "ES2020",
     "outDir": "../dist"
   },
   "include": ["."]

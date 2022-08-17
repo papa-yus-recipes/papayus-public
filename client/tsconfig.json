@@ -1,9 +1,15 @@
 {
   "extends": "..",
   "compilerOptions": {
-    "baseUrl": ".",
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react",
     "lib": ["DOM", "DOM.Iterable"],
-    "noEmit": false
+    "module": "ES6",
+    "moduleResolution": "Node",
+    "noEmit": false,
+    "noUnusedLocals": false,
+    "outDir": "../public/js",
+    "target": "ES6"
   },
   "include": ["."]
 }

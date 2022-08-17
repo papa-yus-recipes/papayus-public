@@ -2,7 +2,7 @@ node_modules
 
 # Emits
 dist
-bundle.js
+public/js
 
 # Credentials
 .env
