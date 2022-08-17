@@ -1,7 +1,9 @@
 import React from "react";
 
 import Link from "./Link";
+import Logo from "./Logo";
 import SearchBar from "./SearchBar";
+import User from "./User";
 
 import "./styles.css";
 
@@ -12,14 +14,8 @@ export default class TopBar extends React.Component {
   override render() {
     return (
       <div className="align-items-center d-flex flex-column flex-lg-row justify-content-between my-lg-0 w-100">
-        <div className="align-items-center bg-white border border-dark d-flex justify-content-center">
-          <a
-            className="border-dark fs-4 fw-bolder max-min-height mb-0 mx-5 mx-lg-0 navbar-brand py-auto text-center text-primary"
-            href="/"
-            id="home"
-          >
-            Papa Yu's
-          </a>
+        <div className="bg-white align-items-center border-end border-start border-dark d-flex justify-content-center">
+          <Logo />
           <button
             className="border-secondary d-lg-none me-2 navbar-toggler"
             title="Collapse Top Bar"
@@ -34,6 +30,7 @@ export default class TopBar extends React.Component {
           <Link href="/glossary.html">Glossary</Link>
           <Link href="/about.html">About</Link>
           <SearchBar />
+          <User />
         </div>
       </div>
     );

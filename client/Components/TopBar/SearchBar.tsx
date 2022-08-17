@@ -27,24 +27,27 @@ export default class SearchBar extends React.Component<NeverRecord, SearchBarSta
 
   override render() {
     return (
-      <form className="container-fluid mx-lg-4 my-lg-0 my-2 navbar-form" onSubmit={this.onSubmit}>
-        <div className="input-group max-min-height">
+      <form
+        className="container-fluid mx-lg-4 my-lg-0 my-2 navbar-form px-0"
+        onSubmit={this.onSubmit}
+      >
+        <div className="input-group">
           <button
-            className="align-items-center bg-white border border-end-0 border-dark btn btn-outline-secondary d-flex pe-0 ps-1 py-0 rounded-0"
+            className="align-items-center bg-white border border-end-0 border-secondary btn btn-outline-secondary d-flex pe-0 ps-1 py-0 rounded-0"
             title="Search"
             type="submit"
           >
             <BsIcon className="fs-5 mx-3 text-black" icon="search" />
           </button>
           <input
-            className="border-bottom border-top border-dark form-control fs-5 rounded-0"
+            className="border-bottom border-top border-secondary form-control fs-5 rounded-0"
             name="query"
             onChange={this.queryOnChange}
             placeholder="Search"
             type="search"
           />
           <button
-            className="align-items-center bg-white border border-start-0 border-dark btn btn-outline-secondary d-flex ps-0 pe-1 py-0 rounded-0"
+            className="align-items-center bg-white border border-start-0 border-secondary btn btn-outline-secondary d-flex ps-0 pe-1 py-0 rounded-0"
             title="Filter"
             type="button"
           >
