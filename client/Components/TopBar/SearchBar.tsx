@@ -37,7 +37,7 @@ export default class SearchBar extends React.Component<NeverRecord, SearchBarSta
             title="Search"
             type="submit"
           >
-            <BsIcon className="fs-5 mx-3 text-black" icon="search" />
+            <BsIcon className="mx-3 text-black" icon="search" size={5} />
           </button>
           <input
             className="border-bottom border-top border-secondary form-control fs-5 rounded-0"
@@ -51,7 +51,7 @@ export default class SearchBar extends React.Component<NeverRecord, SearchBarSta
             title="Filter"
             type="button"
           >
-            <BsIcon className="fs-3 mx-3 text-black" icon="filter" />
+            <BsIcon className="mx-3 text-black" icon="filter" size={3} />
           </button>
         </div>
       </form>

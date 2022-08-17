@@ -32,10 +32,10 @@ export default class User extends React.Component<NeverRecord, UserStates> {
         {this.loggedIn ? (
           <>
             <span className="me-2">{this.state.username}</span>
-            <BsIcon className="fs-4" icon="box-arrow-right" />
+            <BsIcon size={4} icon="box-arrow-right" />
           </>
         ) : (
-          <BsIcon className="fs-3" icon="box-arrow-in-left" />
+          <BsIcon size={3} icon="box-arrow-in-left" />
         )}
       </div>
     );
