@@ -1,0 +1,11 @@
+#home {
+  width: 192px;
+}
+
+.max-min-height {
+  min-height: 52px;
+}
+
+a:hover {
+  font-weight: bold;
+}

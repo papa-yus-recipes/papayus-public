@@ -1,5 +1,5 @@
 {
   "watch": ["client"],
   "ext": "tsx",
-  "exec": "yarn build:client && yarn start"
+  "exec": "webpack --mode development && yarn start"
 }

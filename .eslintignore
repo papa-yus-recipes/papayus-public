@@ -2,3 +2,4 @@ node_modules
 
 # TypeScript Emits
 dist
+public/js
