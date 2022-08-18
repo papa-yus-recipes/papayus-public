@@ -77,10 +77,10 @@
     }
   },
   "lint-staged": {
-    "*.json": [
+    "*.(css|html|json)": [
       "prettier --write"
     ],
-    "*.ts": [
+    "*.(ts|tsx)": [
       "eslint --fix"
     ]
   }
