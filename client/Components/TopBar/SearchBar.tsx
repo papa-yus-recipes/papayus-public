@@ -28,7 +28,7 @@ export default class SearchBar extends React.Component<NeverRecord, SearchBarSta
   override render() {
     return (
       <form
-        className="container-fluid mx-lg-4 my-lg-0 my-2 navbar-form px-0"
+        className="d-flex flex-grow-1 mx-lg-4 my-lg-0 my-3 navbar-form px-0"
         onSubmit={this.onSubmit}
       >
         <div className="input-group">
@@ -37,7 +37,7 @@ export default class SearchBar extends React.Component<NeverRecord, SearchBarSta
             title="Search"
             type="submit"
           >
-            <BsIcon className="mx-3 text-black" icon="search" size={5} />
+            <BsIcon className="mx-3 text-black" icon="search" font-size={5} />
           </button>
           <input
             className="border-bottom border-top border-secondary form-control fs-5 rounded-0"
@@ -51,7 +51,7 @@ export default class SearchBar extends React.Component<NeverRecord, SearchBarSta
             title="Filter"
             type="button"
           >
-            <BsIcon className="mx-3 text-black" icon="filter" size={3} />
+            <BsIcon className="mx-3 text-black" icon="filter" font-size={3} />
           </button>
         </div>
       </form>

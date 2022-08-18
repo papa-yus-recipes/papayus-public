@@ -13,6 +13,8 @@ type UserStates = {
 };
 
 export default class User extends React.Component<NeverRecord, UserStates> {
+  static id = "user";
+
   constructor(props: never) {
     super(props);
 
@@ -26,16 +28,19 @@ export default class User extends React.Component<NeverRecord, UserStates> {
   override render() {
     return (
       <div
-        className="align-items-center d-flex justify-content-around justify-content-lg-end"
-        id="user"
+        className="align-items-center d-flex flex-grow-1 flex-lg-grow-0 justify-content-center justify-content-lg-end mb-3 mb-lg-0"
+        id={User.id}
       >
         {this.loggedIn ? (
-          <>
+          <button className="align-items-center btn d-flex text-dark">
             <span className="me-2">{this.state.username}</span>
-            <BsIcon size={4} icon="box-arrow-right" />
-          </>
+            <BsIcon font-size={4} icon="box-arrow-right" />
+          </button>
         ) : (
-          <BsIcon size={3} icon="box-arrow-in-left" />
+          <button className="align-items-center btn d-flex text-primary">
+            <span className="me-2">Login/Register</span>
+            <BsIcon font-size={3} icon="box-arrow-in-left" />
+          </button>
         )}
       </div>
     );
