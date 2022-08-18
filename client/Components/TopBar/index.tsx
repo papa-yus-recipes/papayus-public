@@ -5,7 +5,7 @@ import Logo from "./Logo";
 import SearchBar from "./SearchBar";
 import User from "./User";
 
-import "./styles.css";
+import "./index.css";
 
 export default class TopBar extends React.Component {
   static id = "top-bar";
