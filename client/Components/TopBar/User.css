@@ -1,3 +1,19 @@
+#bookmarks-toggle {
+  right: 74px;
+  top: 55px;
+}
+
+#bookmarks-toggle-overline {
+  height: 4px;
+  right: 4px;
+}
+
 #user {
-  min-width: 360px;
+  width: 360px;
+}
+
+#user-username {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 304px;
 }
