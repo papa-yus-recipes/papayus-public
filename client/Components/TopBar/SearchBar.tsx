@@ -1,12 +1,9 @@
 import React from "react";
 
 import type { NeverRecord } from "../types";
+import type { SearchBarStates } from "./SearchBar.types";
 
 import BsIcon from "../BsIcon";
-
-type SearchBarStates = {
-  query: string;
-};
 
 export default class SearchBar extends React.Component<NeverRecord, SearchBarStates> {
   constructor(props: never) {

@@ -1,9 +1,6 @@
 import React from "react";
 
-type LinkProps = {
-  href: string;
-  children?: any;
-};
+import type { LinkProps } from "./Link.types";
 
 export default class Link extends React.Component<LinkProps> {
   override render() {

@@ -1,10 +1,6 @@
 import React from "react";
 
-type BsIconProps = {
-  "className"?: string;
-  "icon": string;
-  "font-size": number;
-};
+import type { BsIconProps } from "./BsIcon.types";
 
 export default class BsIcon extends React.Component<BsIconProps> {
   override render() {

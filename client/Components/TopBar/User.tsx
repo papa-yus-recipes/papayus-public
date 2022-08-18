@@ -1,16 +1,12 @@
 import React from "react";
 
 import type { NeverRecord } from "../types";
+import type { UserStates } from "./User.types";
 
 import { getCookies } from "../../helpers";
 import BsIcon from "../BsIcon";
 
 import "./User.css";
-
-type UserStates = {
-  id?: string;
-  username?: string;
-};
 
 export default class User extends React.Component<NeverRecord, UserStates> {
   static id = "user";
