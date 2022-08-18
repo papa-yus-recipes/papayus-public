@@ -1,3 +1,5 @@
+import type { SearchOptions } from "./types";
+
 export const getCookies = <T extends string[]>(...keys: T) => {
   const document_cookies = document.cookie.split(/;\s*/);
   const cookies: Partial<Record<T[number], string>> = {};
@@ -18,4 +20,11 @@ export const minutesToTime = (minutes: number) => {
   const hours = (minutes - remainder) / 60;
   if (hours) time = `${hours}h ${time}`;
   return time;
+};
+
+export const search = ({ query, tags }: SearchOptions) => {
+  const url_search_params = new URLSearchParams();
+  if (query) url_search_params.append("query", query);
+  if (tags) url_search_params.append("tags", `#${tags.join("#")}`);
+  return `/search.html?${url_search_params.toString()}`;
 };
