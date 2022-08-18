@@ -1,3 +1,3 @@
-export type Id = {
+export type HasId = {
   id: string;
 };

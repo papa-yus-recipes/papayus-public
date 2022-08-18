@@ -5,15 +5,21 @@ import "../common";
 
 import Content from "../Components/Content";
 import Section from "../Components/Section";
+import Tag from "../Components/Tag";
 import { isEven, minutesToTime } from "../helpers";
 import { getRecipe } from "../requests/recipes.requests";
 
 import "./recipe.css";
 
-getRecipe().then(({ description, id, ingredients, name, servings, steps, time }) =>
+getRecipe().then(({ description, id, ingredients, name, servings, steps, tags, time }) =>
   createRoot(document.getElementById(Content.id) as HTMLElement).render(
     <React.StrictMode>
       <Content h1-children={name}>
+        <div className="d-flex justify-content-center mb-4" id="recipe-tags">
+          {tags.map((v, i) => (
+            <Tag key={i} tag={v}></Tag>
+          ))}
+        </div>
         <Section title="Description">
           <div className="bg-light rounded-pill">
             <img

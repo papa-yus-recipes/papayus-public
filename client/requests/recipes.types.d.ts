@@ -1,25 +1,25 @@
-import type { TagReference } from "./tags.types";
-import type { Id } from "./types";
+import type { ITagReference } from "./tags.types";
+import type { HasId } from "./types";
 
-export type RecipeKey = Id & {
+export interface IRecipeKey extends HasId {
   name: string;
-};
+}
 
-type RecipeIngredient = {
+interface IRecipeIngredient {
   main: string;
   substitutes?: Array<string>;
-};
+}
 
-type RecipeStep = {
+interface IRecipeStep {
   step: string;
   elaboration?: string;
-};
+}
 
-export type Recipe = RecipeKey & {
+export interface IRecipe extends IRecipeKey {
   description: string;
-  tags: Array<TagReference>;
+  tags: Array<ITagReference>;
   time: number;
   servings: number;
-  ingredients: Array<RecipeIngredient>;
-  steps: Array<RecipeStep>;
-};
+  ingredients: Array<IRecipeIngredient>;
+  steps: Array<IRecipeStep>;
+}
