@@ -1,0 +1,16 @@
+#content > div {
+  width: min(75%, 720px);
+}
+
+#description-section > div > img {
+  object-fit: contain;
+  width: clamp(288px, 75%, 576px);
+}
+
+#ingredients-section > ul {
+  width: max(288px, 55%);
+}
+
+#steps-section > ol {
+  width: max(320px, 75%);
+}

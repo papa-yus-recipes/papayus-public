@@ -9,3 +9,13 @@ export const getCookies = <T extends string[]>(...keys: T) => {
   }
   return cookies;
 };
+
+export const isEven = (n: number) => (n & 1) === 0;
+
+export const minutesToTime = (minutes: number) => {
+  const remainder = minutes % 60;
+  let time = `${remainder}mins`;
+  const hours = (minutes - remainder) / 60;
+  if (hours) time = `${hours}h ${time}`;
+  return time;
+};

@@ -11,7 +11,6 @@ import "./User.css";
 export default class User extends React.Component<NeverRecord, UserStates> {
   static id = "user";
   static username_id = `${User.id}-username`;
-  static underline_id = `${User.id}-underline`;
 
   constructor(props: never) {
     super(props);
@@ -24,9 +23,10 @@ export default class User extends React.Component<NeverRecord, UserStates> {
   }
 
   override componentDidMount() {
-    (document.getElementById("bookmarks-toggle-overline") as HTMLSpanElement).style.width = `${
-      (document.getElementById(User.username_id) as HTMLSpanElement).clientWidth
-    }px`;
+    if (this.loggedIn)
+      (document.getElementById("bookmarks-toggle-overline") as HTMLSpanElement).style.width = `${
+        (document.getElementById(User.username_id) as HTMLSpanElement).clientWidth
+      }px`;
   }
 
   override render() {

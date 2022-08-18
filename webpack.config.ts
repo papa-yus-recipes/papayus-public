@@ -6,7 +6,8 @@ const include = [resolve("client")];
 
 const config: Configuration = {
   entry: {
-    index: "./client/index.tsx"
+    index: "./client/pages/index.tsx",
+    recipe: "./client/pages/recipe.tsx"
   },
   module: {
     rules: [
@@ -26,7 +27,7 @@ const config: Configuration = {
     path: resolve("public/js")
   },
   resolve: {
-    extensions: [".tsx"]
+    extensions: [".ts", ".tsx"]
   }
 };
 

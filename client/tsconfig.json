@@ -8,7 +8,6 @@
     "moduleResolution": "Node",
     "noEmit": false,
     "noUnusedLocals": false,
-    "outDir": "../public/js",
     "target": "ES6"
   },
   "include": ["."]

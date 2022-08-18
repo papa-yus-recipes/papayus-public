@@ -3,12 +3,12 @@ import type { Doc, HasId } from "./types";
 
 interface IIngredient {
   main: string;
-  substitutes: Array<string>;
+  substitutes?: Array<string>;
 }
 
 interface IStep {
   step: string;
-  elaboration: string;
+  elaboration?: string;
 }
 
 export interface IRecipe extends HasId {
