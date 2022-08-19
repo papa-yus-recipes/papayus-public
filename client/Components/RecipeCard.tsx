@@ -3,7 +3,7 @@ import React from "react";
 import type { RecipeKey } from "../requests/recipes.types";
 import type { RecipeCardProps } from "./RecipeCard.types";
 
-import { recipeImageUrl } from "../helpers";
+import { recipeImageUrl, rgbToString, wordToColor } from "../helpers";
 
 import RecipeLink from "./RecipeLink";
 
@@ -16,9 +16,23 @@ export default class RecipeCard extends React.Component<RecipeCardProps> {
     this.#key = { id: props.recipe.id, name: props.recipe.name };
   }
 
+  override componentDidMount() {
+    const rgb = [0, 0, 0];
+    for (const { name } of this.props.recipe.tags) {
+      const color = wordToColor(name);
+      for (let i = rgb.length; i--; ) {
+        rgb[i] += color[i] as number;
+      }
+    }
+    for (let i = rgb.length; i--; ) {
+      rgb[i] /= this.props.recipe.tags.length;
+    }
+    (document.getElementById(this.#key.id) as HTMLDivElement).style.borderColor = rgbToString(rgb);
+  }
+
   override render() {
     return (
-      <div className="card shadow-sm md">
+      <div className="card shadow-sm" id={this.#key.id}>
         <RecipeLink recipe-key={this.#key}>
           <img alt={this.#key.name} className="card-img-top" src={recipeImageUrl(this.#key.id)} />
         </RecipeLink>
