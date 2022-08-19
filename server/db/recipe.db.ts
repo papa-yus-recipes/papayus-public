@@ -1,5 +1,5 @@
 import type { RecipeKey } from "./Models/Recipe.types";
-import type { RecipesScanOptions } from "./recipe.types";
+import type { ScanRecipesOptions } from "./recipe.types";
 import type { ConditionInitializer } from "dynamoose/dist/Condition";
 
 import { Recipe } from "./Models";
@@ -7,7 +7,7 @@ import { contains, joinConditions } from "./helpers";
 
 export const getRecipe = async (key: RecipeKey) => (await Recipe.get(key)).populate();
 
-export const scanRecipes = async ({ operator, query, tags }: RecipesScanOptions) => {
+export const scanRecipes = async ({ operator, query, tags }: ScanRecipesOptions) => {
   const scan_options: ConditionInitializer = {};
 
   const operator_n_tags_provided = operator && tags;

@@ -2,6 +2,7 @@ import { randomUUID } from "crypto";
 import { transaction } from "dynamoose";
 
 import type { UserData, UserKey, UserUsername } from "./Models/User.types";
+import type { CreateUserOptions } from "./user.types";
 import type Transaction from "dynamoose/dist/Transaction";
 
 import { User } from "./Models";
@@ -22,7 +23,7 @@ const createUsernameId = (username: UserUsername): Transaction => {
 };
 const deleteUsernameId = (username: UserUsername) => User.transaction.delete(usernameId(username));
 
-export const createUser = async (data: { username: UserUsername } & UserData) => {
+export const createUser = async (data: CreateUserOptions) => {
   const user = { id: randomUUID(), ...data };
   await transaction([User.transaction.create(user), createUsernameId(data.username)]);
   return new User(user);

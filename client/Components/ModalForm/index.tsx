@@ -5,7 +5,7 @@ import type { ModalFormProps } from "./index.types";
 export class ModalForm extends React.Component<ModalFormProps> {
   override render() {
     return (
-      <form className={this.props.className} id={this.props.id}>
+      <form className={this.props.className} id={this.props.id} onSubmit={this.props.onSubmit}>
         <div className="container modal-body">
           <div className="gy-3 row">{this.props.body}</div>
         </div>

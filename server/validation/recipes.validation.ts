@@ -1,14 +1,16 @@
 import type { Validators } from "./type";
 import type { RecipeKey } from "db/Models/Recipe.types";
-import type { RecipesScanOptions } from "db/recipe.types";
+import type { ScanRecipesOptions } from "db/recipe.types";
 import type { Operator } from "db/types";
 import type { RecipesGetQuery, RecipesScanQuery } from "routers/recipes.types";
 import type { QueryParam } from "routers/types";
 
 import { InvalidError } from "NextError";
 
-const validators: Validators<keyof RecipeKey | keyof RecipesScanOptions> = {
-  id: (v: QueryParam) => typeof v === "string" && v.length === 36,
+import { isString } from "./helpers";
+
+const validators: Validators<keyof RecipesGetQuery | keyof RecipesScanQuery> = {
+  id: (v: QueryParam) => isString(v) && (<string>v).length === 36,
   name: Boolean,
   operator: (v: QueryParam) => (<Operator[]>["AND", "OR"]).includes(<Operator>v),
   query: Boolean,
@@ -28,7 +30,7 @@ export const validateRecipesScanQuery = ({
   operator,
   query: query_param,
   tags
-}: RecipesScanQuery): RecipesScanOptions => {
+}: RecipesScanQuery): ScanRecipesOptions => {
   const query = {
     operator: operator ? operator : "AND",
     query: query_param,
@@ -40,5 +42,5 @@ export const validateRecipesScanQuery = ({
       throw InvalidError(key);
   }
 
-  return <RecipesScanOptions>query;
+  return <ScanRecipesOptions>query;
 };

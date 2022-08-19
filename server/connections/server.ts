@@ -1,11 +1,11 @@
-import express, { ErrorRequestHandler, static as serve } from "express";
+import express, { ErrorRequestHandler, static as serve, urlencoded } from "express";
 
 import NextError from "NextError";
 import { api_router } from "routers/api.router";
 
 export const server = express();
 
-server.use(serve("public"));
+server.use(serve("public")).use(urlencoded({ extended: true }));
 
 server.use("/api", api_router);
 

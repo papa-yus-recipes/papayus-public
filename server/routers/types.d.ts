@@ -5,3 +5,7 @@ export type QueryParam = string | undefined;
 export type Query<T extends Record<string, any>> = {
   [K in keyof T]?: QueryParam;
 };
+
+export type Unknown<T extends Record<string, any>> = {
+  [K in keyof T]?: unknown;
+};

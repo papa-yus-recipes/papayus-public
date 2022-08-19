@@ -5,7 +5,7 @@ import type { NeverRecord } from "./types";
 import type { PopulatedRecipe } from "db/Models/Recipe.types";
 
 import { getRecipe, scanRecipes } from "db/recipe.db";
-import { validateRecipesGetQuery, validateRecipesScanQuery } from "validation/recipes.validation";
+import { validateRecipesGetQuery, validateRecipesScanQuery } from "validation";
 
 import { catchNext } from "./helpers";
 

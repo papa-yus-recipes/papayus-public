@@ -14,11 +14,11 @@ export default class TopBarSearchBar extends React.Component<NeverRecord, TopBar
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  queryOnChange(ev: React.ChangeEvent<HTMLInputElement>) {
+  private queryOnChange(ev: React.ChangeEvent<HTMLInputElement>) {
     this.setState({ query: ev.target.value });
   }
 
-  onSubmit(ev: React.FormEvent<HTMLFormElement>) {
+  private onSubmit(ev: React.FormEvent<HTMLFormElement>) {
     ev.preventDefault();
     window.location.assign(searchUrl({ query: this.state.query }));
   }
