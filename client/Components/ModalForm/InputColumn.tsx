@@ -14,8 +14,10 @@ export default class ModalFormInputColumn extends React.Component<ModalFormInput
           {this.props.children}
         </ModalFormLabel>
         <ModalFormInput
+          autoComplete={this.props["input-autoComplete"]}
           id={this.props["input-id"]}
           name={this.props["input-name"]}
+          onChange={this.props["input-onChange"]}
           required={this.props["input-required"]}
           type={this.props["input-type"]}
         />
