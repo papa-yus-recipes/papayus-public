@@ -1,12 +1,13 @@
 import React from "react";
 
-import type { NeverRecord } from "../types";
-import type { UserStates } from "./User.types";
+import type { NeverRecord } from "../../types";
+import type { UserStates } from "./index.types";
 
-import { getCookies } from "../../helpers";
-import BsIcon from "../BsIcon";
+import { getCookies } from "../../../helpers";
+import BsIcon from "../../BsIcon";
 
-import "./User.css";
+import "./index.css";
+import LogReg from "./LogReg";
 
 export default class User extends React.Component<NeverRecord, UserStates> {
   static id = "user";
@@ -59,15 +60,7 @@ export default class User extends React.Component<NeverRecord, UserStates> {
             </button>
           </>
         ) : (
-          <button
-            className="align-items-center btn d-flex text-primary"
-            id="logreg-toggle"
-            title="Login/Register"
-            type="button"
-          >
-            <span className="me-2">Login/Register</span>
-            <BsIcon font-size={3} icon="box-arrow-in-left" />
-          </button>
+          <LogReg />
         )}
       </div>
     );

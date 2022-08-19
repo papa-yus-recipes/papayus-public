@@ -1,7 +1,7 @@
-import React from "react";
+import { ReactNode } from "react";
 
 export type ChildrenProps = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export type ClassNameProps = {
@@ -10,4 +10,6 @@ export type ClassNameProps = {
 
 export type NeverRecord = Record<string, never>;
 
-export type Prefix<P, T> = `${P}-${T}`;
+export type Prefix<P extends string, T> = {
+  [K in keyof T as `${P}-${K}`]: T[K];
+};
