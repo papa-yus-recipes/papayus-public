@@ -1,10 +1,13 @@
 import type { Item, HasId } from "./types";
 
-export interface IUser extends HasId {
-  username: string;
-  password: string;
-}
+export type UserUsername = string;
 
-export type UserItem = Item<IUser>;
+export type UserKey = HasId & {
+  username: UserUsername;
+};
 
-export type IUserReference = Pick<IUser, "id" | "username">;
+export type UserData = { password: string };
+
+export type User = UserKey & UserData;
+
+export type UserItem = Item<User>;

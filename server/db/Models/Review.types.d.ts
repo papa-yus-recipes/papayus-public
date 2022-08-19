@@ -1,11 +1,19 @@
-import type { IRecipeReference } from "./Recipe.types";
+import type { RecipeReference } from "./Recipe.types";
 import type { IUserReference } from "./User.types";
 import type { Item, HasId, HasTimestamps } from "./types";
 
-export interface IReview extends HasId, HasTimestamps {
-  recipe: IRecipeReference;
+export type ReviewKey = HasId["id"];
+
+export type ReviewRecipeNUser = {
+  recipe: RecipeReference;
   user: IUserReference;
+};
+
+export type ReviewData = {
   rating: number;
   comment: string;
-}
-export type ReviewItem = Item<IReview>;
+};
+
+export type BaseReview = { id: ReviewKey } & HasTimestamps & ReviewData & ReviewRecipeNUser;
+
+export type ReviewItem = Item<BaseReview>;

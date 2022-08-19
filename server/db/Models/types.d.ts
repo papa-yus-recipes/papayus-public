@@ -20,8 +20,8 @@ export type AttributeDefinition = Exclude<SchemaDefinition[string], AttributeTyp
 
 export type Item<T> = T & Item;
 
-export interface HasId {
+export type HasId = {
   id: string;
-}
+};
 
-export type HasTimestamps = Record<keyof TimestampObject, Date>;
+export type HasTimestamps<K = keyof TimestampObject> = Record<K, Date>;

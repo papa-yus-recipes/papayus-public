@@ -1,16 +1,13 @@
 import { randomUUID } from "crypto";
 import { transaction } from "dynamoose";
 
-import type { IUser } from "./Models/User.types";
+import type { UserData, UserKey, UserUsername } from "./Models/User.types";
 import type Transaction from "dynamoose/dist/Transaction";
 
 import { User } from "./Models";
 
-type UserKey = Pick<IUser, "id" | "username">;
-type UserData = Omit<IUser, "id">;
-
-const usernameId = (username: IUser["username"]) => ({ id: `username#${username}`, username: "_" });
-const createUsernameId = (username: IUser["username"]): Transaction => {
+const usernameId = (username: UserUsername) => ({ id: `username#${username}`, username: "_" });
+const createUsernameId = (username: UserUsername): Transaction => {
   const username_id = usernameId(username);
   return {
     Put: {
@@ -23,10 +20,9 @@ const createUsernameId = (username: IUser["username"]): Transaction => {
     }
   };
 };
-const deleteUsernameId = (username: IUser["username"]) =>
-  User.transaction.delete(usernameId(username));
+const deleteUsernameId = (username: UserUsername) => User.transaction.delete(usernameId(username));
 
-export const createUser = async (data: UserData) => {
+export const createUser = async (data: { username: UserUsername } & UserData) => {
   const user = { id: randomUUID(), ...data };
   await transaction([User.transaction.create(user), createUsernameId(data.username)]);
   return new User(user);
@@ -34,7 +30,7 @@ export const createUser = async (data: UserData) => {
 
 export const getUser = (key: UserKey) => User.get(key);
 
-export const updateUser = async (key: UserKey, update: Partial<Omit<UserData, "username">>) =>
+export const updateUser = async (key: UserKey, update: Partial<UserData>) =>
   User.update(key, update);
 
 export const deleteUser = async (key: UserKey) =>

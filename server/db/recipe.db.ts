@@ -1,39 +1,45 @@
-import type { RecipeKey, RecipesScanOptions } from "./recipe.types";
+import type { RecipeKey } from "./Models/Recipe.types";
+import type { RecipesScanOptions } from "./recipe.types";
 import type { ConditionInitializer } from "dynamoose/dist/Condition";
 
 import { Recipe } from "./Models";
-import { contains } from "./helpers";
+import { contains, joinConditions } from "./helpers";
 
 export const getRecipe = async (key: RecipeKey) => (await Recipe.get(key)).populate();
 
-export const scanRecipes = async ({ condition, query, tags }: RecipesScanOptions) => {
+export const scanRecipes = async ({ operator, query, tags }: RecipesScanOptions) => {
   const scan_options: ConditionInitializer = {};
 
-  if (query || tags) {
-    if (!condition) condition = "AND";
+  const operator_n_tags_provided = operator && tags;
 
-    let filters = new Array<string>();
+  if (query || operator_n_tags_provided) {
+    const conditions = new Array<string>();
 
     scan_options["ExpressionAttributeNames"] = {};
     scan_options["ExpressionAttributeValues"] = {};
 
-    if (tags) {
+    if (query) {
+      scan_options["ExpressionAttributeNames"]["#name"] = "name";
+      scan_options["ExpressionAttributeNames"]["#description"] = "description";
+      conditions.push(
+        joinConditions([contains("#name", ":query"), contains("#description", ":query")], "OR")
+      );
+      scan_options["ExpressionAttributeValues"][":query"] = { S: query };
+    }
+
+    if (operator_n_tags_provided) {
+      const tag_conditions = new Array<string>();
+
       scan_options["ExpressionAttributeNames"]["#tags"] = "tags";
       for (let i = tags.length; i--; ) {
         const tagI = `:tag${i}`;
-        filters.push(contains("#tags", tagI));
+        tag_conditions.push(contains("#tags", tagI));
         scan_options["ExpressionAttributeValues"][tagI] = { S: tags[i] as string };
       }
-      filters = [filters.join(` ${condition} `)];
+      conditions.push(joinConditions(tag_conditions, operator));
     }
 
-    if (query) {
-      scan_options["ExpressionAttributeNames"]["#name"] = "name";
-      filters.push(contains("#name", ":name"));
-      scan_options["ExpressionAttributeValues"][":name"] = { S: query };
-    }
-
-    scan_options["FilterExpression"] = filters.join(" AND ");
+    scan_options["FilterExpression"] = joinConditions(conditions, "AND");
   }
 
   return (await Recipe.scan(scan_options).exec()).populate();

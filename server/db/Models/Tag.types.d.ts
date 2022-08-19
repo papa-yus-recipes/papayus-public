@@ -1,10 +1,9 @@
 import type { Item } from "./types";
 
-export interface ITag {
-  name: string;
+export type TagKey = string;
+
+export type Tag = { name: TagKey } & {
   category: string;
-}
+};
 
-export type TagItem = Item<ITag>;
-
-export type ITagReference = ITag["name"];
+export type TagItem = Item<Tag>;

@@ -1,1 +1,1 @@
-export type Condition = "AND" | "OR";
+export type Operator = "AND" | "OR";

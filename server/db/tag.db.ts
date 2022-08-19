@@ -1,5 +1,5 @@
-import type { ITag } from "./Models/Tag.types";
+import type { TagKey } from "./Models/Tag.types";
 
 import { Tag } from "./Models";
 
-export const getTag = (name: ITag["name"]) => Tag.get(name);
+export const getTag = (key: TagKey) => Tag.get(key);

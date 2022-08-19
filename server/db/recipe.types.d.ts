@@ -1,9 +1,8 @@
-import type { IRecipe } from "./Models/Recipe.types";
-import type { Condition } from "./types";
+import type { RecipeTags } from "./Models/Recipe.types";
+import type { Operator } from "./types";
 
-export type RecipeKey = Pick<IRecipe, "id" | "name">;
-
-export type RecipesScanOptions = Partial<Pick<IRecipe, "tags">> & {
-  condition?: Condition;
+export type RecipesScanOptions = {
+  operator?: Operator;
   query?: string;
+  tags?: RecipeTags;
 };
