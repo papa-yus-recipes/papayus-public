@@ -11,8 +11,8 @@ const validators: Validators<RecipesGetQueryKey> = {
   name: (v) => typeof v === "string"
 };
 
-export const validateRecipesGetQuery = (query: RecipesGetQuery): RecipeKey => {
-  const { id, name } = query;
+export const validateRecipesGetQuery = ({ id, name }: RecipesGetQuery): RecipeKey => {
+  const query = { id, name };
   for (const key in { id, name })
     if (!validators[<RecipesGetQueryKey>key](query[<RecipesGetQueryKey>key]))
       throw InvalidError(key);

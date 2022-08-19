@@ -14,7 +14,8 @@ export const recipes_router = Router();
 recipes_router.get(
   "/",
   (req: Request<NeverRecord, IRecipe, NeverRecord, RecipesGetQuery>, res, next) =>
-    catchNext(async () => {
-      res.send(<IRecipe>(await getRecipe(validateRecipesGetQuery(req.query))).toJSON());
-    }, next)
+    catchNext(
+      async () => res.send(<IRecipe>(await getRecipe(validateRecipesGetQuery(req.query))).toJSON()),
+      next
+    )
 );
