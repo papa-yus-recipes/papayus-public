@@ -17,7 +17,7 @@ const createReviewRecipeNUserId = (recipe_n_user: ReviewRecipeNUser): Transactio
     Item: {
       id: { S: recipeNUserId(recipe_n_user) }
     },
-    TableName: Review.originalName
+    TableName: Review.name
   }
 });
 const deleteReviewRecipeNUserId = (recipe_n_user: ReviewRecipeNUser) =>

@@ -1,14 +1,12 @@
 import dynamoose from "dynamoose";
 
-import type { SavedRecipeDoc } from "./SavedRecipe.types";
-
-import { aws_config } from "configs";
+import type { SavedRecipeItem } from "./SavedRecipe.types";
 
 import { Recipe } from "./Recipe";
 import { User } from "./User";
 import { required } from "./helpers";
 
-export const SavedRecipe = dynamoose.model<SavedRecipeDoc>(
+export const SavedRecipe = dynamoose.model<SavedRecipeItem>(
   "saved_recipe",
   new dynamoose.Schema(
     {
@@ -17,6 +15,5 @@ export const SavedRecipe = dynamoose.model<SavedRecipeDoc>(
       user: required(User)
     },
     { timestamps: { createdAt: "savedAt" } }
-  ),
-  { create: aws_config.dynamodb_config.create }
+  )
 );

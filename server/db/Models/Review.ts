@@ -1,14 +1,12 @@
 import dynamoose from "dynamoose";
 
-import type { ReviewDoc } from "./Review.types";
-
-import { aws_config } from "configs";
+import type { ReviewItem } from "./Review.types";
 
 import { Recipe } from "./Recipe";
 import { User } from "./User";
 import { required } from "./helpers";
 
-export const Review = dynamoose.model<ReviewDoc>(
+export const Review = dynamoose.model<ReviewItem>(
   "review",
   new dynamoose.Schema(
     {
@@ -21,6 +19,5 @@ export const Review = dynamoose.model<ReviewDoc>(
     {
       timestamps: true
     }
-  ),
-  { create: aws_config.dynamodb_config.create }
+  )
 );

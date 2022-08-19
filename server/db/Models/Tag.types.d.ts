@@ -1,10 +1,10 @@
-import type { Doc } from "./types";
+import type { Item } from "./types";
 
 export interface ITag {
   name: string;
   category: string;
 }
 
-export type TagDoc = Doc<ITag>;
+export type TagItem = Item<ITag>;
 
-export type ITagReference = Pick<ITag, "name" | "category">;
+export type ITagReference = ITag["name"];

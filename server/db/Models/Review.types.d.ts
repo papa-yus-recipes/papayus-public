@@ -1,6 +1,6 @@
 import type { IRecipeReference } from "./Recipe.types";
 import type { IUserReference } from "./User.types";
-import type { Doc, HasId, HasTimestamps } from "./types";
+import type { Item, HasId, HasTimestamps } from "./types";
 
 export interface IReview extends HasId, HasTimestamps {
   recipe: IRecipeReference;
@@ -8,4 +8,4 @@ export interface IReview extends HasId, HasTimestamps {
   rating: number;
   comment: string;
 }
-export type ReviewDoc = Doc<IReview>;
+export type ReviewItem = Item<IReview>;

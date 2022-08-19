@@ -1,13 +1,11 @@
 import dynamoose from "dynamoose";
 
-import type { RecipeDoc } from "./Recipe.types";
-
-import { aws_config } from "configs";
+import type { RecipeItem } from "./Recipe.types";
 
 import { Tag } from "./Tag";
 import { rangeKey } from "./helpers";
 
-export const Recipe = dynamoose.model<RecipeDoc>(
+export const Recipe = dynamoose.model<RecipeItem>(
   "recipe",
   new dynamoose.Schema({
     id: String,
@@ -46,6 +44,5 @@ export const Recipe = dynamoose.model<RecipeDoc>(
         }
       ]
     }
-  }),
-  { create: aws_config.dynamodb_config.create }
+  })
 );

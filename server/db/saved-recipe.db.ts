@@ -17,7 +17,7 @@ const createSavedRecipeUserNRecipeId = (user_n_recipe: SavedRecipeUserNRecipe): 
     Item: {
       id: { S: userNRecipeId(user_n_recipe) }
     },
-    TableName: SavedRecipe.originalName
+    TableName: SavedRecipe.name
   }
 });
 const deleteSavedRecipeUserNRecipeId = (user_n_recipe: SavedRecipeUserNRecipe) =>

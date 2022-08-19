@@ -19,7 +19,7 @@ const createUsernameId = (username: IUser["username"]): Transaction => {
         id: { S: username_id.id },
         username: { S: username_id.username }
       },
-      TableName: User.originalName
+      TableName: User.name
     }
   };
 };

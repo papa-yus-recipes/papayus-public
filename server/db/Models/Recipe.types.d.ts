@@ -1,5 +1,5 @@
 import type { ITagReference } from "./Tag.types";
-import type { Doc, HasId } from "./types";
+import type { Item, HasId } from "./types";
 
 interface IIngredient {
   main: string;
@@ -21,6 +21,6 @@ export interface IRecipe extends HasId {
   steps: Array<IStep>;
 }
 
-export type RecipeDoc = Doc<IRecipe>;
+export type RecipeItem = Item<IRecipe>;
 
 export type IRecipeReference = Pick<IRecipe, "id" | "name">;

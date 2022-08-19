@@ -1,6 +1,6 @@
 import type { IRecipeReference } from "./Recipe.types";
 import type { IUserReference } from "./User.types";
-import type { Doc, HasId } from "./types";
+import type { Item, HasId } from "./types";
 
 export interface ISavedRecipe extends HasId {
   recipe: IRecipeReference;
@@ -8,4 +8,4 @@ export interface ISavedRecipe extends HasId {
   savedAt: Date;
 }
 
-export type SavedRecipeDoc = Doc<ISavedRecipe>;
+export type SavedRecipeItem = Item<ISavedRecipe>;

@@ -1,5 +1,5 @@
-import type { Document } from "dynamoose/dist/Document";
 import type { ModelType } from "dynamoose/dist/General";
+import type { Item } from "dynamoose/dist/Item";
 import type { Schema, SchemaDefinition, TimestampObject } from "dynamoose/dist/Schema";
 
 export type AttributeType =
@@ -14,11 +14,11 @@ export type AttributeType =
   | SetConstructor
   | symbol
   | Schema
-  | ModelType<Document>;
+  | ModelType<Item>;
 
 export type AttributeDefinition = Exclude<SchemaDefinition[string], AttributeType | any[]>;
 
-export type Doc<T> = T & Document;
+export type Item<T> = T & Item;
 
 export interface HasId {
   id: string;
