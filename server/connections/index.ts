@@ -1,3 +1,1 @@
-import { server } from "./server";
-
-export { server };
+export * from "./server";

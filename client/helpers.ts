@@ -25,6 +25,6 @@ export const minutesToTime = (minutes: number) => {
 export const search = ({ query, tags }: SearchOptions) => {
   const url_search_params = new URLSearchParams();
   if (query) url_search_params.append("query", query);
-  if (tags) url_search_params.append("tags", `#${tags.join("#")}`);
+  if (tags) url_search_params.append("tags", `${tags.join(",")}`);
   return `/search.html?${url_search_params.toString()}`;
 };
