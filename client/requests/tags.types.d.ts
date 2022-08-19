@@ -1,6 +1,5 @@
-export type ITag = {
-  name: string;
+export type TagKey = string;
+
+export type Tag = { name: TagKey } & {
   category: string;
 };
-
-export type ITagReference = Pick<ITag, "name" | "category">;

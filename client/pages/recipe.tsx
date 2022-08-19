@@ -6,7 +6,7 @@ import "../common";
 import Content from "../Components/Content";
 import Section from "../Components/Section";
 import { renderTags } from "../Components/Tag";
-import { isEven, minutesToTime } from "../helpers";
+import { isEven, minutesToTime, recipeImageUrl } from "../helpers";
 import { getRecipe } from "../requests/recipes.requests";
 
 import "./recipe.css";
@@ -20,13 +20,9 @@ getRecipe().then(({ description, id, ingredients, name, servings, steps, tags, t
         </div>
         <Section title="Description">
           <div className="bg-light rounded-pill">
-            <img
-              alt={name}
-              className="d-flex mb-4 mx-auto"
-              src={`https://papayus-recipe-images.s3.ap-southeast-1.amazonaws.com/${id}.jpg`}
-            />
+            <img alt={name} className="d-flex mb-4 mx-auto" src={recipeImageUrl(id)} />
           </div>
-          <p>{description}</p>
+          <p dangerouslySetInnerHTML={{ __html: description }}></p>
         </Section>
         <Section title="Recipe">
           <h2 className="mb-3 text-center">Recipe</h2>

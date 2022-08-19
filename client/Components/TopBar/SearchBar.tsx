@@ -3,7 +3,7 @@ import React from "react";
 import type { NeverRecord } from "../types";
 import type { SearchBarStates } from "./SearchBar.types";
 
-import { search } from "../../helpers";
+import { searchUrl } from "../../helpers";
 import BsIcon from "../BsIcon";
 
 export default class SearchBar extends React.Component<NeverRecord, SearchBarStates> {
@@ -20,7 +20,7 @@ export default class SearchBar extends React.Component<NeverRecord, SearchBarSta
 
   onSubmit(ev: React.FormEvent<HTMLFormElement>) {
     ev.preventDefault();
-    window.location.assign(search({ query: this.state.query }));
+    window.location.assign(searchUrl({ query: this.state.query }));
   }
 
   override render() {

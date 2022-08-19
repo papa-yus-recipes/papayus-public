@@ -1,25 +1,33 @@
-import type { ITagReference } from "./tags.types";
-import type { HasId } from "./types";
+import type { Tag, TagKey } from "./tags.types";
+import type { HasId, Operator } from "./types";
 
-export interface IRecipeKey extends HasId {
+export type RecipeKey = HasId & {
   name: string;
-}
+};
 
-interface IRecipeIngredient {
+export type RecipeTags = Array<TagKey>;
+
+type Ingredient = {
   main: string;
   substitutes?: Array<string>;
-}
+};
 
-interface IRecipeStep {
+type Step = {
   step: string;
   elaboration?: string;
-}
+};
 
-export interface IRecipe extends IRecipeKey {
+type Recipe = RecipeKey & {
   description: string;
-  tags: Array<ITagReference>;
+  tags: Array<Tag>;
   time: number;
   servings: number;
-  ingredients: Array<IRecipeIngredient>;
-  steps: Array<IRecipeStep>;
-}
+  ingredients: Array<Ingredient>;
+  steps: Array<Step>;
+};
+
+export type RecipesScanOptions = {
+  operator?: Operator;
+  query?: string;
+  tags?: string;
+};

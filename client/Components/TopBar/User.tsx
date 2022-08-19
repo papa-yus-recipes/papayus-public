@@ -37,7 +37,7 @@ export default class User extends React.Component<NeverRecord, UserStates> {
       >
         {this.loggedIn ? (
           <>
-            <span className="me-1" id={User.username_id}>
+            <span className="me-1 overflow-hidden" id={User.username_id}>
               {this.state.username}
             </span>
             <button

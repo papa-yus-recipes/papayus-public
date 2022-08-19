@@ -13,7 +13,6 @@
 }
 
 #user-username {
-  overflow: hidden;
   text-overflow: ellipsis;
   max-width: 304px;
 }

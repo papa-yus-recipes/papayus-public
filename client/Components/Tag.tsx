@@ -1,9 +1,9 @@
 import React from "react";
 
-import type { ITag } from "../requests/tags.types";
+import type { Tag as TagType } from "../requests/tags.types";
 import type { TagProps } from "./Tag.types";
 
-import { search } from "../helpers";
+import { searchUrl } from "../helpers";
 
 import "./Tag.css";
 
@@ -107,7 +107,7 @@ export default class Tag extends React.Component<TagProps> {
     return (
       <a
         className="rounded-pill tag text-decoration-none text-white"
-        href={search({ tags: [this.props.tag.name] })}
+        href={searchUrl({ tags: [this.props.tag.name] })}
         id={this.#id}
       >
         <small>#{this.props.tag.name}</small>
@@ -116,7 +116,7 @@ export default class Tag extends React.Component<TagProps> {
   }
 }
 
-export const renderTags = (tags: ITag[]) =>
+export const renderTags = (tags: TagType[]) =>
   tags
     .sort((a, b) => +a.category - +b.category || +a.name - +b.name)
     .map((tag, i) => <Tag key={i} tag={tag} />);

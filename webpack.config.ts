@@ -7,7 +7,8 @@ const include = [resolve("client")];
 const config: Configuration = {
   entry: {
     index: "./client/pages/index.tsx",
-    recipe: "./client/pages/recipe.tsx"
+    recipe: "./client/pages/recipe.tsx",
+    search: "./client/pages/search.tsx"
   },
   module: {
     rules: [

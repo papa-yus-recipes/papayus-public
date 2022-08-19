@@ -1,4 +1,6 @@
-import type { SearchOptions } from "./types";
+import type { QueryParams, SearchOptions } from "./types";
+
+import { RecipeKey } from "./requests/recipes.types";
 
 export const getCookies = <T extends string[]>(...keys: T) => {
   const document_cookies = document.cookie.split(/;\s*/);
@@ -22,9 +24,15 @@ export const minutesToTime = (minutes: number) => {
   return time;
 };
 
-export const search = ({ query, tags }: SearchOptions) => {
-  const url_search_params = new URLSearchParams();
-  if (query) url_search_params.append("query", query);
-  if (tags) url_search_params.append("tags", `${tags.join(",")}`);
-  return `/search.html?${url_search_params.toString()}`;
+export const recipeUrl = (key: RecipeKey) => `/recipe.html?${new URLSearchParams(key).toString()}`;
+
+export const recipeImageUrl = (id: RecipeKey["id"]) =>
+  `https://papayus-recipe-images.s3.ap-southeast-1.amazonaws.com/${id}.jpg`;
+
+export const searchUrl = ({ query, tags }: SearchOptions) => {
+  const params: QueryParams = {};
+  if (query) params["query"] = query;
+  if (tags) params["tags"] = tags.join(",");
+
+  return `/search.html?${new URLSearchParams(params).toString()}`;
 };
