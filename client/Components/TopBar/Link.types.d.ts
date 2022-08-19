@@ -1,5 +1,5 @@
 import type { ChildrenProps } from "../types";
 
-export type LinkProps = {
+export type TopBarLinkProps = {
   href: string;
 } & ChildrenProps;

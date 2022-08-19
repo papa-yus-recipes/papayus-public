@@ -1,12 +1,12 @@
 import React from "react";
 
 import type { NeverRecord } from "../types";
-import type { SearchBarStates } from "./SearchBar.types";
+import type { TopBarSearchBarStates } from "./SearchBar.types";
 
 import { searchUrl } from "../../helpers";
 import BsIcon from "../BsIcon";
 
-export default class SearchBar extends React.Component<NeverRecord, SearchBarStates> {
+export default class TopBarSearchBar extends React.Component<NeverRecord, TopBarSearchBarStates> {
   constructor(props: never) {
     super(props);
 

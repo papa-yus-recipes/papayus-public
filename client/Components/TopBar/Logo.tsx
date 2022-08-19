@@ -2,7 +2,7 @@ import React from "react";
 
 import "./Logo.css";
 
-export default class Logo extends React.Component {
+export default class TopBarLogo extends React.Component {
   override render() {
     return (
       <a

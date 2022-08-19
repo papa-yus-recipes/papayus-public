@@ -1,22 +1,22 @@
 import React from "react";
 
 import type { NeverRecord } from "../../types";
-import type { UserStates } from "./index.types";
+import type { TopBarUserStates } from "./index.types";
 
 import { getCookies } from "../../../helpers";
 import BsIcon from "../../BsIcon";
 
 import "./index.css";
-import LogReg from "./LogReg";
+import TopBarUserLogReg from "./LogReg";
 
-export default class User extends React.Component<NeverRecord, UserStates> {
+export default class TopBarUser extends React.Component<NeverRecord, TopBarUserStates> {
   static id = "user";
-  static username_id = `${User.id}-username`;
+  static username_id = `${TopBarUser.id}-username`;
 
   constructor(props: never) {
     super(props);
 
-    this.state = getCookies("id", "username") as UserStates;
+    this.state = getCookies("id", "username") as TopBarUserStates;
   }
 
   get loggedIn() {
@@ -26,7 +26,7 @@ export default class User extends React.Component<NeverRecord, UserStates> {
   override componentDidMount() {
     if (this.loggedIn)
       (document.getElementById("bookmarks-toggle-overline") as HTMLSpanElement).style.width = `${
-        (document.getElementById(User.username_id) as HTMLSpanElement).clientWidth
+        (document.getElementById(TopBarUser.username_id) as HTMLSpanElement).clientWidth
       }px`;
   }
 
@@ -34,11 +34,11 @@ export default class User extends React.Component<NeverRecord, UserStates> {
     return (
       <div
         className="align-items-center d-flex flex-grow-1 flex-lg-grow-0 justify-content-center justify-content-lg-end mb-3 mb-lg-0"
-        id={User.id}
+        id={TopBarUser.id}
       >
         {this.loggedIn ? (
           <>
-            <span className="me-1 overflow-hidden" id={User.username_id}>
+            <span className="me-1 overflow-hidden" id={TopBarUser.username_id}>
               {this.state.username}
             </span>
             <button
@@ -60,7 +60,7 @@ export default class User extends React.Component<NeverRecord, UserStates> {
             </button>
           </>
         ) : (
-          <LogReg />
+          <TopBarUserLogReg />
         )}
       </div>
     );

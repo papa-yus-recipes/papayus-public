@@ -1,8 +1,8 @@
 import React from "react";
 
-import type { LinkProps } from "./Link.types";
+import type { TopBarLinkProps } from "./Link.types";
 
-export default class Link extends React.Component<LinkProps> {
+export default class Link extends React.Component<TopBarLinkProps> {
   override render() {
     return (
       <a

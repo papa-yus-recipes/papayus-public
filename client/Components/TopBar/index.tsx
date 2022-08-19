@@ -1,9 +1,9 @@
 import React from "react";
 
 import Link from "./Link";
-import Logo from "./Logo";
-import SearchBar from "./SearchBar";
-import User from "./User";
+import TopBarLogo from "./Logo";
+import TopBarSearchBar from "./SearchBar";
+import TopBarUser from "./User";
 
 import "./index.css";
 
@@ -16,7 +16,7 @@ export default class TopBar extends React.Component {
       <div className="bg-light border-bottom border-top border-secondary navbar navbar-expand-lg navbar-light mb-4 px-3 py-0">
         <div className="align-items-center d-flex flex-column flex-lg-row justify-content-between my-lg-0 w-100">
           <div className="bg-white align-items-center border-end border-start border-dark d-flex justify-content-center">
-            <Logo />
+            <TopBarLogo />
             <button
               className="border-secondary d-lg-none me-2 navbar-toggler"
               title="Collapse Top Bar"
@@ -30,8 +30,8 @@ export default class TopBar extends React.Component {
           <div className="align-items-center collapse navbar-collapse" id={TopBar.collapse_id}>
             <Link href="/glossary.html">Glossary</Link>
             <Link href="/about.html">About</Link>
-            <SearchBar />
-            <User />
+            <TopBarSearchBar />
+            <TopBarUser />
           </div>
         </div>
       </div>

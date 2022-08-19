@@ -1,3 +1,3 @@
-export type SearchBarStates = {
+export type TopBarSearchBarStates = {
   query: string;
 };
