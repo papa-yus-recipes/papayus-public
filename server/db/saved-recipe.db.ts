@@ -7,7 +7,7 @@ import type Transaction from "dynamoose/dist/Transaction";
 import { SavedRecipe } from "./Models";
 
 const userNRecipeId = (user_n_recipe: SavedRecipeUserNRecipe) =>
-  `${user_n_recipe.user.id}+${user_n_recipe.recipe.id}`;
+  `${user_n_recipe.user}+${user_n_recipe.recipe.id}`;
 const createSavedRecipeUserNRecipeId = (user_n_recipe: SavedRecipeUserNRecipe): Transaction => ({
   Put: {
     ConditionExpression: "attribute_not_exists(id)",
