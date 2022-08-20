@@ -11,7 +11,7 @@ server.use("/api", api_router);
 
 // NextError Handling
 server.use(<ErrorRequestHandler>((err, _, res, next) => {
-  console.log(err);
+  console.error(err);
   if (err instanceof NextError) {
     const { status_code, message } = err;
     return res.status(status_code).send(message);
