@@ -7,8 +7,8 @@ export default class Section extends React.Component<SectionProps> {
     return (
       <section
         className="mb-4"
+        data-title={this.props.title}
         id={[...this.props.title.toLowerCase().split(/\s+/), "section"].join("-")}
-        title={this.props.title}
       >
         {this.props.children}
       </section>

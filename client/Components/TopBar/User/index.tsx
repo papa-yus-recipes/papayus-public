@@ -44,7 +44,7 @@ export default class TopBarUser extends React.Component<NeverRecord, TopBarUserS
             <button
               className="bg-transparent border-0 d-flex p-0 position-absolute text-primary"
               id="bookmarks-toggle"
-              title="Toggle Bookmarks"
+              title="Bookmarks"
               type="button"
             >
               <span className="bg-primary position-absolute" id="bookmarks-toggle-overline"></span>
