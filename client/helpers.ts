@@ -24,10 +24,12 @@ export const minutesToTime = (minutes: number) => {
   return time;
 };
 
-export const recipeUrl = (key: RecipeKey) => `/recipe.html?${new URLSearchParams(key).toString()}`;
+const objToQuery = (obj: Record<string, any>) => new URLSearchParams(obj).toString();
+
+export const recipeUrl = (key: RecipeKey) => `/recipe.html?${objToQuery(key)}`;
 
 export const recipeImageUrl = (id: RecipeKey["id"]) =>
-  `https://papayus-recipe-images.s3.ap-southeast-1.amazonaws.com/${id}.jpg`;
+  `https://b3g5m4hr8i.execute-api.ap-southeast-1.amazonaws.com/default/recipe-images/${id}.jpg`;
 
 export const rgbToString = (rgb: number[]) => `rgb(${rgb.join(",")})`;
 
@@ -36,7 +38,7 @@ export const searchUrl = ({ query, tags }: SearchOptions) => {
   if (query) params["query"] = query;
   if (tags) params["tags"] = tags.join(",");
 
-  return `/search.html?${new URLSearchParams(params).toString()}`;
+  return `/search.html?${objToQuery(params)}`;
 };
 
 // Adapted from http://jsfiddle.net/4d8Pv
