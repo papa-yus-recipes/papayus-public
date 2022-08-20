@@ -1,9 +1,7 @@
 import type { Tag, TagKey } from "./tags.types";
 import type { HasId, Operator } from "./types";
 
-export type RecipeKey = HasId & {
-  name: string;
-};
+export type RecipeKey = HasId["id"];
 
 export type RecipeTags = Array<TagKey>;
 
@@ -17,7 +15,8 @@ type Step = {
   elaboration?: string;
 };
 
-type Recipe = RecipeKey & {
+type Recipe = { id: RecipeKey } & {
+  name: string;
   description: string;
   tags: Array<Tag>;
   time: number;

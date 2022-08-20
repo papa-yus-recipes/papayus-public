@@ -14,7 +14,7 @@ import { getRecipe } from "../requests/recipes.requests";
 
 import "./recipe.css";
 
-getRecipe()
+getRecipe(new URLSearchParams(window.location.search).get("id") as string)
   .then(json<Recipe>)
   .then(({ description, id, ingredients, name, servings, steps, tags, time }) =>
     createRoot(document.getElementById(Content.id) as HTMLElement).render(

@@ -29,9 +29,9 @@ export const minutesToTime = (minutes: number) => {
 
 const objToQuery = (obj: Record<string, any>) => new URLSearchParams(obj).toString();
 
-export const recipeUrl = (key: RecipeKey) => `/recipe.html?${objToQuery(key)}`;
+export const recipeUrl = (key: RecipeKey) => `/recipe.html?id=${key}`;
 
-export const recipeImageUrl = (id: RecipeKey["id"]) =>
+export const recipeImageUrl = (id: RecipeKey) =>
   `https://b3g5m4hr8i.execute-api.ap-southeast-1.amazonaws.com/default/recipe-images/${id}.jpg`;
 
 export const rgbToString = (rgb: number[]) => `rgb(${rgb.join(",")})`;
