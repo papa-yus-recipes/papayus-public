@@ -3,7 +3,7 @@ import React from "react";
 import type { NeverRecord } from "../../types";
 import type { TopBarUserLogRegStates } from "./LogReg.types";
 
-import { createUser } from "../../../requests/users.requests";
+import { createUser, login } from "../../../requests/users.requests";
 import Alert from "../../Alert";
 import BsIcon from "../../BsIcon";
 import { ModalForm } from "../../ModalForm";
@@ -23,7 +23,7 @@ export default class TopBarUserLogReg extends React.Component<NeverRecord, TopBa
   constructor(props: NeverRecord) {
     super(props);
 
-    this.state = { sof: "", message: "" };
+    this.state = { "log-color": "", "log-message": "", "reg-color": "", "reg-message": "" };
 
     this.confirmPasswordOnChange = this.confirmPasswordOnChange.bind(this);
     this.loginOnSubmit = this.loginOnSubmit.bind(this);
@@ -45,6 +45,16 @@ export default class TopBarUserLogReg extends React.Component<NeverRecord, TopBa
 
   private loginOnSubmit(ev: React.FormEvent<HTMLFormElement>) {
     ev.preventDefault();
+    const form = ev.target as HTMLFormElement;
+    const form_data = new FormData(form);
+    return login({
+      username: form_data.get("username") as string,
+      password: form_data.get("password") as string
+    }).then(async (res) => {
+      if (!res.ok) return this.setState({ "log-color": "danger", "log-message": await res.text() });
+
+      window.location.reload();
+    });
   }
 
   private registerOnSubmit(ev: React.FormEvent<HTMLFormElement>) {
@@ -54,28 +64,30 @@ export default class TopBarUserLogReg extends React.Component<NeverRecord, TopBa
     return createUser({
       username: form_data.get("username") as string,
       password: form_data.get("password") as string
-    })
-      .then(() => {
-        form.reset();
+    }).then(async (res) => {
+      if (!res.ok) return this.setState({ "reg-color": "danger", "reg-message": await res.text() });
 
-        (
-          document.querySelector(`[data-bs-target="#${TopBarUserLogReg.log_id}"]`) as HTMLLIElement
-        ).classList.add("active");
-        (document.getElementById(TopBarUserLogReg.log_id) as HTMLDivElement).classList.add(
-          "active",
-          "show"
-        );
-        (
-          document.querySelector(`[data-bs-target="#${TopBarUserLogReg.reg_id}"]`) as HTMLLIElement
-        ).classList.remove("active");
-        (document.getElementById(TopBarUserLogReg.reg_id) as HTMLDivElement).classList.remove(
-          "active",
-          "show"
-        );
+      form.reset();
+      (
+        document.querySelector(`[data-bs-target="#${TopBarUserLogReg.log_id}"]`) as HTMLLIElement
+      ).classList.add("active");
+      (document.getElementById(TopBarUserLogReg.log_id) as HTMLDivElement).classList.add(
+        "active",
+        "show"
+      );
+      (
+        document.querySelector(`[data-bs-target="#${TopBarUserLogReg.reg_id}"]`) as HTMLLIElement
+      ).classList.remove("active");
+      (document.getElementById(TopBarUserLogReg.reg_id) as HTMLDivElement).classList.remove(
+        "active",
+        "show"
+      );
 
-        this.setState({ sof: "success", message: "Registration Successful! Please Login below." });
-      })
-      .catch(({ message }) => this.setState({ sof: "danger", message }));
+      this.setState({
+        "log-color": "success",
+        "log-message": "Registration Successful! Please Login below."
+      });
+    });
   }
 
   override componentDidMount() {
@@ -123,8 +135,8 @@ export default class TopBarUserLogReg extends React.Component<NeverRecord, TopBa
                 <ModalForm
                   body={
                     <>
-                      {this.state.sof === "success" && (
-                        <Alert sof={this.state.sof}>{this.state.message}</Alert>
+                      {this.state["log-message"] && (
+                        <Alert color={this.state["log-color"]}>{this.state["log-message"]}</Alert>
                       )}
                       <ModalFormInputColumn
                         input-autoComplete="username"
@@ -156,8 +168,8 @@ export default class TopBarUserLogReg extends React.Component<NeverRecord, TopBa
                 <ModalForm
                   body={
                     <>
-                      {this.state.sof === "danger" && (
-                        <Alert sof={this.state.sof}>{this.state.message}</Alert>
+                      {this.state["reg-message"] && (
+                        <Alert color={this.state["reg-color"]}>{this.state["reg-message"]}</Alert>
                       )}
                       <ModalFormInputColumn
                         input-autoComplete="username"

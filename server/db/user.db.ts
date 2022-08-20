@@ -30,8 +30,8 @@ export const createUser = async (data: UserData) => {
 
 export const getUser = (key: UserKey) => User.get(key);
 
-export const getPasswordByUsername = async (username: UserUsername) =>
-  (await User.query({ username }).exec())[0]?.["password"];
+export const getUserByUsername = async (username: UserUsername) =>
+  (await User.query({ username }).exec())[0];
 
 export function updateUser(
   key: UserKey,

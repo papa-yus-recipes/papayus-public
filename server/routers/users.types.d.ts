@@ -1,4 +1,6 @@
 import type { Unknown } from "./types";
-import type { CreateUserOptions } from "db/user.types";
+import type { UserData } from "db/Models/User.types";
 
-export type UsersPostBody = Unknown<CreateUserOptions>;
+export type UsersPostBody = Unknown<UserData>;
+
+export type UsersLoginPostBody = Unknown<UserData>;
