@@ -1,4 +1,7 @@
 export type TopBarUserStates = {
-  id?: string;
   username?: string;
+};
+
+export type UpdateStateProps = {
+  updateState: () => void;
 };

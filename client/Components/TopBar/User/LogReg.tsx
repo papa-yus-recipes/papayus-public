@@ -1,16 +1,20 @@
 import React from "react";
 
-import type { NeverRecord } from "../../types";
-import type { TopBarUserLogRegStates } from "./LogReg.types";
+import type { TopBarUserLogRegProps, TopBarUserLogRegStates } from "./LogReg.types";
 
+import { dismissModal } from "../../../helpers";
 import { createUser, login } from "../../../requests/users.requests";
 import Alert from "../../Alert";
 import BsIcon from "../../BsIcon";
-import { ModalForm } from "../../ModalForm";
-import ModalFormInputColumn from "../../ModalForm/InputColumn";
+import ModalClose from "../../Modal/Close";
+import { ModalForm } from "../../Modal/Form";
+import ModalFormInputColumn from "../../Modal/Form/InputColumn";
 import NavTabs from "../../NavTabs";
 
-export default class TopBarUserLogReg extends React.Component<NeverRecord, TopBarUserLogRegStates> {
+export default class TopBarUserLogReg extends React.Component<
+  TopBarUserLogRegProps,
+  TopBarUserLogRegStates
+> {
   static id = "logreg";
   static log_id = `${TopBarUserLogReg.id}-log`;
   static reg_id = `${TopBarUserLogReg.id}-reg`;
@@ -20,7 +24,7 @@ export default class TopBarUserLogReg extends React.Component<NeverRecord, TopBa
   static login = "Login";
   static register = "Register";
 
-  constructor(props: NeverRecord) {
+  constructor(props: TopBarUserLogRegProps) {
     super(props);
 
     this.state = { "log-color": "", "log-message": "", "reg-color": "", "reg-message": "" };
@@ -53,7 +57,8 @@ export default class TopBarUserLogReg extends React.Component<NeverRecord, TopBa
     }).then(async (res) => {
       if (!res.ok) return this.setState({ "log-color": "danger", "log-message": await res.text() });
 
-      window.location.reload();
+      dismissModal();
+      this.props.updateState();
     });
   }
 
@@ -124,12 +129,7 @@ export default class TopBarUserLogReg extends React.Component<NeverRecord, TopBa
                     { id: TopBarUserLogReg.reg_id, title: TopBarUserLogReg.register }
                   ]}
                 />
-                <button
-                  className="btn-close"
-                  data-bs-dismiss="modal"
-                  title="Close"
-                  type="button"
-                ></button>
+                <ModalClose className="btn-close" />
               </div>
               <div className="tab-content">
                 <ModalForm

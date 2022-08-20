@@ -1,5 +1,5 @@
-import type { BsIconPrefix, BsIconProps } from "../BsIcon.types";
-import type { ChildrenProps, Prefix } from "../types";
+import type { BsIconPrefix, BsIconProps } from "../../BsIcon.types";
+import type { ChildrenProps, Prefix } from "../../types";
 import type { ModalFormInputProps } from "./Input.types";
 
 export type ModalFormLabelPrefix = "label";

@@ -2,7 +2,7 @@ import React from "react";
 
 import type { ModalFormLabelProps } from "./Label.types";
 
-import BsIcon from "../BsIcon";
+import BsIcon from "../../BsIcon";
 
 export default class ModalFormLabel extends React.Component<ModalFormLabelProps> {
   override render() {

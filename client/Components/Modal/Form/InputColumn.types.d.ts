@@ -1,4 +1,4 @@
-import type { ChildrenProps, Prefix } from "../types";
+import type { ChildrenProps, Prefix } from "../../types";
 import type { ModalFormColumnPrefix, ModalFormColumnProps } from "./Column.types";
 import type { ModalFormInputPrefix, ModalFormInputProps } from "./Input.types";
 import type { ModalFormLabelPrefix, ModalFormLabelProps } from "./Label.types";

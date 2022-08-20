@@ -8,6 +8,7 @@ import BsIcon from "../../BsIcon";
 
 import "./index.css";
 import TopBarUserLogReg from "./LogReg";
+import TopBarUserLogout from "./Logout";
 
 export default class TopBarUser extends React.Component<NeverRecord, TopBarUserStates> {
   static id = "user";
@@ -16,15 +17,22 @@ export default class TopBarUser extends React.Component<NeverRecord, TopBarUserS
   constructor(props: never) {
     super(props);
 
-    this.state = getCookies("id", "username") as TopBarUserStates;
+    const { id, refresh_token, username } = getCookies("id", "refresh_token", "username");
+    this.state = this.calculateState(id && refresh_token && username, username);
+    this.updateState = this.updateState.bind(this);
   }
 
-  get loggedIn() {
-    return Boolean(this.state.id && this.state.username);
+  private calculateState(condition: any, username: string | undefined) {
+    return condition ? { username } : { username: "" };
+  }
+
+  private updateState() {
+    const { username } = getCookies("username");
+    this.setState(this.calculateState(username, username), this.componentDidMount);
   }
 
   override componentDidMount() {
-    if (this.loggedIn)
+    if (this.state.username)
       (document.getElementById("bookmarks-toggle-overline") as HTMLSpanElement).style.width = `${
         (document.getElementById(TopBarUser.username_id) as HTMLSpanElement).clientWidth
       }px`;
@@ -36,7 +44,7 @@ export default class TopBarUser extends React.Component<NeverRecord, TopBarUserS
         className="align-items-center d-flex flex-grow-1 flex-lg-grow-0 justify-content-center justify-content-lg-end mb-3 mb-lg-0"
         id={TopBarUser.id}
       >
-        {this.loggedIn ? (
+        {this.state.username ? (
           <>
             <span className="me-1 overflow-hidden" id={TopBarUser.username_id}>
               {this.state.username}
@@ -50,17 +58,10 @@ export default class TopBarUser extends React.Component<NeverRecord, TopBarUserS
               <span className="bg-primary position-absolute" id="bookmarks-toggle-overline"></span>
               <BsIcon font-size={3} icon="bookmark-heart-fill" />
             </button>
-            <button
-              className="align-items-center btn d-flex text-dark"
-              id="logout-toggle"
-              title="Logout"
-              type="button"
-            >
-              <BsIcon font-size={4} icon="box-arrow-right" />
-            </button>
+            <TopBarUserLogout updateState={this.updateState} />
           </>
         ) : (
-          <TopBarUserLogReg />
+          <TopBarUserLogReg updateState={this.updateState} />
         )}
       </div>
     );

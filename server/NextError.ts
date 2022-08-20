@@ -8,3 +8,7 @@ export default class NextError extends Error {
 }
 
 export const InvalidError = (key: string) => new NextError(400, `Invalid ${key}`);
+
+export const UnauthenticatedError = () => new NextError(401, "Unauthorized");
+
+export const UnauthorizedError = () => new NextError(403, "Forbidden");

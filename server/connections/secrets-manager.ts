@@ -1,20 +1,20 @@
 import { SecretsManagerCache } from "aws-secrets-manager-cache";
 
+import type { JwtTokenSecrets, SecretsManagerOptions } from "./types";
+
 import { secrets_manager_config } from "configs";
 
 class SecretsManager extends SecretsManagerCache {
   #jwt_token_secrets_name: string;
 
-  constructor(options: Omit<typeof secrets_manager_config, "ttl">) {
+  constructor(options: SecretsManagerOptions) {
     super({ ttl: secrets_manager_config.ttl, ...options });
 
     this.#jwt_token_secrets_name = options.jwt_token_secrets_name;
   }
 
-  getJwtWebTokenSecrets() {
-    return <Promise<{ JWT_ACCESS_TOKEN_SECRET: string; JWT_REFRESH_TOKEN_SECRET: string }>>(
-      (<Promise<any>>this.getSecret(this.#jwt_token_secrets_name, true))
-    );
+  async getJwtWebTokenSecrets() {
+    return <JwtTokenSecrets>(<any>await this.getSecret(this.#jwt_token_secrets_name, true));
   }
 }
 

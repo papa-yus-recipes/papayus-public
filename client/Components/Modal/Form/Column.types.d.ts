@@ -1,4 +1,4 @@
-import type { ChildrenProps } from "../types";
+import type { ChildrenProps } from "../../types";
 
 export type ModalFormColumnPrefix = "column";
 

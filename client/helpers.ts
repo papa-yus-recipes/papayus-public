@@ -2,6 +2,9 @@ import type { QueryParams, SearchOptions } from "./types";
 
 import { RecipeKey } from "./requests/recipes.types";
 
+export const dismissModal = () =>
+  (document.querySelector('[data-bs-dismiss="modal"]') as HTMLElement).click();
+
 export const getCookies = <T extends string[]>(...keys: T) => {
   const document_cookies = document.cookie.split(/;\s*/);
   const cookies: Partial<Record<T[number], string>> = {};

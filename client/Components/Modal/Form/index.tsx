@@ -2,6 +2,8 @@ import React from "react";
 
 import type { ModalFormProps } from "./index.types";
 
+import ModalClose from "../Close";
+
 export class ModalForm extends React.Component<ModalFormProps> {
   override render() {
     return (
@@ -10,9 +12,7 @@ export class ModalForm extends React.Component<ModalFormProps> {
           <div className="gy-3 row">{this.props.body}</div>
         </div>
         <div className="modal-footer">
-          <button className="btn btn-secondary" data-bs-dismiss="modal" title="Close" type="button">
-            Close
-          </button>
+          <ModalClose className="btn btn-secondary">Close</ModalClose>
           <button className="btn btn-primary" type="submit">
             {this.props["submit-text"] || "Submit"}
           </button>
