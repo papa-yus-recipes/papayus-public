@@ -17,6 +17,7 @@ export default class Rating extends React.Component<RatingProps> {
 
   override render() {
     return (
+      // Adapted from https://embed.plnkr.co/plunk/C42MBE
       <fieldset
         className={`rating ${this.props.className}`}
         disabled={this.props.disabled}
