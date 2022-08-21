@@ -4,7 +4,6 @@ import type { NeverRecord } from "../../types";
 import type { TopBarUserStates } from "./index.types";
 
 import { getCookies } from "../../../helpers";
-import BsIcon from "../../BsIcon";
 
 import "./index.css";
 import TopBarUserLogReg from "./LogReg";
@@ -31,13 +30,6 @@ export default class TopBarUser extends React.Component<NeverRecord, TopBarUserS
     this.setState(this.calculateState(username, username), this.componentDidMount);
   }
 
-  override componentDidMount() {
-    if (this.state.username)
-      (document.getElementById("bookmarks-toggle-overline") as HTMLSpanElement).style.width = `${
-        (document.getElementById(TopBarUser.username_id) as HTMLSpanElement).clientWidth
-      }px`;
-  }
-
   override render() {
     return (
       <div
@@ -49,15 +41,6 @@ export default class TopBarUser extends React.Component<NeverRecord, TopBarUserS
             <span className="me-1 overflow-hidden" id={TopBarUser.username_id}>
               {this.state.username}
             </span>
-            <button
-              className="bg-transparent border-0 d-flex p-0 position-absolute text-primary"
-              id="bookmarks-toggle"
-              title="Bookmarks"
-              type="button"
-            >
-              <span className="bg-primary position-absolute" id="bookmarks-toggle-overline"></span>
-              <BsIcon font-size={3} icon="bookmark-heart-fill" />
-            </button>
             <TopBarUserLogout updateState={this.updateState} />
           </>
         ) : (

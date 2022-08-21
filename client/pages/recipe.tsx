@@ -28,7 +28,7 @@ getRecipe(new URLSearchParams(window.location.search).get("id") as string)
       average += rating;
       return (
         <div key={i}>
-          <div className="d-flex align-items-center">
+          <form className="d-flex align-items-center">
             <b>{user.username}</b>
             &ensp;@&ensp;
             <small>{new Date(updatedAt).toLocaleString()}</small>
@@ -37,10 +37,10 @@ getRecipe(new URLSearchParams(window.location.search).get("id") as string)
               className="mb-1"
               font-size={4}
               id={`${user.username}-rating`}
-              default={rating.toString()}
-              disabled={true}
+              default={rating}
+              disabled
             />
-          </div>
+          </form>
           <span className="position-relative comment">{comment}</span>
         </div>
       );
@@ -108,17 +108,19 @@ getRecipe(new URLSearchParams(window.location.search).get("id") as string)
               ))}
             </ol>
           </Section>
-          <Section title="Reviews">
+          <Section className="mx-auto" title="Reviews">
             <h3 className="mb-0 text-center">Reviews</h3>
-            <Rating
-              className="d-flex justify-content-center mb-1"
-              font-size={3}
-              id="average-rating"
-              default={average.toString()}
-              disabled={true}
-            />
+            <form>
+              <Rating
+                className="d-flex justify-content-center mb-1"
+                font-size={3}
+                id="average-rating"
+                default={average}
+                disabled
+              />
+            </form>
             {user_can_review && <AddReview recipe-id={id} />}
-            {review_elements}
+            <div>{review_elements}</div>
           </Section>
         </Content>
       </React.StrictMode>

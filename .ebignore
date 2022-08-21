@@ -1,0 +1,16 @@
+.husky
+client
+node_modules
+server
+tests
+.env
+.eslint*
+.git*
+.prettier*
+jest.config.ts
+nodemon.json
+README.md
+tsconfig.json
+webpack.config.ts
+yarn-error.log
+yarn.lock

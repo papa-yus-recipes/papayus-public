@@ -1,5 +1,6 @@
-import type { ChildrenProps } from "./types";
+import type { ChildrenProps, ClassNameProps } from "./types";
 
 export type SectionProps = {
   title: string;
-} & ChildrenProps;
+} & ChildrenProps &
+  ClassNameProps;

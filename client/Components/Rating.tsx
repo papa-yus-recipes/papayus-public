@@ -9,7 +9,9 @@ export default class Rating extends React.Component<RatingProps> {
 
   override componentDidMount() {
     (
-      document.getElementById(`${this.props.id}-${this.props.default || 1}`) as HTMLInputElement
+      document.getElementById(
+        `${this.props.id}-${Number.isSafeInteger(this.props.default) ? this.props.default : 1}`
+      ) as HTMLInputElement
     ).checked = true;
   }
 

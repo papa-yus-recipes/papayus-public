@@ -142,7 +142,7 @@ export default class TopBarUserLogReg extends React.Component<
                         input-autoComplete="username"
                         input-id={`${TopBarUserLogReg.log_id}-${TopBarUserLogReg.username_name}`}
                         input-name={TopBarUserLogReg.username_name}
-                        input-required={true}
+                        input-required
                         input-type="text"
                         label-bi-icon="person-fill"
                       >
@@ -152,7 +152,7 @@ export default class TopBarUserLogReg extends React.Component<
                         input-autoComplete="current-password"
                         input-id={`${TopBarUserLogReg.log_id}-${TopBarUserLogReg.password_name}`}
                         input-name={TopBarUserLogReg.password_name}
-                        input-required={true}
+                        input-required
                         input-type="password"
                         label-bi-icon="lock-fill"
                       >
@@ -175,7 +175,7 @@ export default class TopBarUserLogReg extends React.Component<
                         input-autoComplete="username"
                         input-id={`${TopBarUserLogReg.reg_id}-${TopBarUserLogReg.username_name}`}
                         input-name={TopBarUserLogReg.username_name}
-                        input-required={true}
+                        input-required
                         input-type="text"
                         label-bi-icon="person-fill"
                       >
@@ -185,7 +185,7 @@ export default class TopBarUserLogReg extends React.Component<
                         input-autoComplete="new-password"
                         input-id={`${TopBarUserLogReg.reg_id}-${TopBarUserLogReg.password_name}`}
                         input-name={TopBarUserLogReg.password_name}
-                        input-required={true}
+                        input-required
                         input-type="password"
                         label-bi-icon="lock-fill"
                       >
@@ -196,7 +196,7 @@ export default class TopBarUserLogReg extends React.Component<
                         input-id=""
                         input-name=""
                         input-onChange={this.confirmPasswordOnChange}
-                        input-required={true}
+                        input-required
                         input-type="password"
                         label-bi-icon="lock-fill"
                       >

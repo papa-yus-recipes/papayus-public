@@ -15,6 +15,10 @@
   width: max(320px, 75%);
 }
 
+#reviews-section {
+  width: max(360px, 85%);
+}
+
 .comment {
   bottom: 10px;
 }

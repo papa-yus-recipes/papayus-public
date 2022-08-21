@@ -6,7 +6,7 @@ export default class Section extends React.Component<SectionProps> {
   override render() {
     return (
       <section
-        className="mb-4"
+        className={`mb-4 ${this.props.className}`}
         data-title={this.props.title}
         id={[...this.props.title.toLowerCase().split(/\s+/), "section"].join("-")}
       >
