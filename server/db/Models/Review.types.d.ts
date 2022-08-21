@@ -1,12 +1,12 @@
-import type { RecipeReference } from "./Recipe.types";
-import type { IUserReference } from "./User.types";
+import type { Recipe, RecipeKey } from "./Recipe.types";
+import type { User, UserKey } from "./User.types";
 import type { Item, HasId, HasTimestamps } from "./types";
 
 export type ReviewKey = HasId["id"];
 
 export type ReviewRecipeNUser = {
-  recipe: RecipeReference;
-  user: IUserReference;
+  recipe: RecipeKey;
+  user: UserKey;
 };
 
 export type ReviewData = {
@@ -17,3 +17,5 @@ export type ReviewData = {
 export type BaseReview = { id: ReviewKey } & HasTimestamps & ReviewData & ReviewRecipeNUser;
 
 export type ReviewItem = Item<BaseReview>;
+
+export type PopulatedReview = BaseReview & { user: User; recipe: Recipe };

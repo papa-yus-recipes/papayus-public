@@ -14,3 +14,7 @@
 #steps-section > ol {
   width: max(320px, 75%);
 }
+
+.comment {
+  bottom: 10px;
+}

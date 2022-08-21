@@ -2,21 +2,51 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 
 import type { Recipe } from "../requests/recipes.types";
+import type { Review } from "../requests/reviews.types";
 
 import "../common";
 
+import AddReview from "../Components/AddReview";
 import Content from "../Components/Content";
+import Rating from "../Components/Rating";
 import Section from "../Components/Section";
 import { renderTags } from "../Components/Tag";
-import { isEven, minutesToTime, recipeImageUrl } from "../helpers";
+import { getCookies, isEven, minutesToTime, recipeImageUrl } from "../helpers";
 import { json } from "../requests/helpers";
 import { getRecipe } from "../requests/recipes.requests";
 
 import "./recipe.css";
 
 getRecipe(new URLSearchParams(window.location.search).get("id") as string)
-  .then(json<Recipe>)
-  .then(({ description, id, ingredients, name, servings, steps, tags, time }) =>
+  .then(json<[Recipe, Review[]]>)
+  .then(([{ description, id, ingredients, name, servings, steps, tags, time }, reviews]) => {
+    const { id: user_id } = getCookies("id");
+    let user_can_review = true;
+    let average = 0;
+    const review_elements = reviews.map(({ comment, rating, user, updatedAt }, i) => {
+      user_can_review = user_id !== user.id;
+      average += rating;
+      return (
+        <div key={i}>
+          <div className="d-flex align-items-center">
+            <b>{user.username}</b>
+            &ensp;@&ensp;
+            <small>{new Date(updatedAt).toLocaleString()}</small>
+            ;&ensp;
+            <Rating
+              className="mb-1"
+              font-size={4}
+              id={`${user.username}-rating`}
+              default={rating.toString()}
+              disabled={true}
+            />
+          </div>
+          <span className="position-relative comment">{comment}</span>
+        </div>
+      );
+    });
+    average = Math.round(average / review_elements.length);
+
     createRoot(document.getElementById(Content.id) as HTMLElement).render(
       <React.StrictMode>
         <Content h1-children={name}>
@@ -78,7 +108,19 @@ getRecipe(new URLSearchParams(window.location.search).get("id") as string)
               ))}
             </ol>
           </Section>
+          <Section title="Reviews">
+            <h3 className="mb-0 text-center">Reviews</h3>
+            <Rating
+              className="d-flex justify-content-center mb-1"
+              font-size={3}
+              id="average-rating"
+              default={average.toString()}
+              disabled={true}
+            />
+            {user_can_review && <AddReview recipe-id={id} />}
+            {review_elements}
+          </Section>
         </Content>
       </React.StrictMode>
-    )
-  );
+    );
+  });

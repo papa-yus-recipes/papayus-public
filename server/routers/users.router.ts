@@ -3,13 +3,23 @@ import { Request, Response, Router } from "express";
 import { sign, verify } from "jsonwebtoken";
 
 import type { NeverRecord } from "./types";
-import type { UsersLoginPostBody, UsersPostBody } from "./users.types";
+import type {
+  UserParams,
+  UserReviewsPostBody,
+  UsersLoginPostBody,
+  UsersPostBody
+} from "./users.types";
+import type { BaseReview } from "db/Models/Review.types";
 import type { User } from "db/Models/User.types";
 
 import { InvalidError, UnauthenticatedError, UnauthorizedError } from "NextError";
 import { secrets_manager } from "connections";
-import { createUser, getUserByUsername } from "db";
-import { validateUsersLoginPostBody, validateUsersPostBody } from "validation";
+import { createReview, createUser, getUserByUsername } from "db";
+import {
+  validateUserReviewsPostBody,
+  validateUsersLoginPostBody,
+  validateUsersPostBody
+} from "validation";
 
 import { catchNext, cookie } from "./helpers";
 
@@ -52,30 +62,29 @@ users_router.post(
 const user_router = Router({ mergeParams: true });
 users_router.use("/:id", user_router);
 
-user_router.use(
-  (req: Request<{ id: string }, NeverRecord, { refresh_token?: string }>, res, next) =>
-    catchNext(async () => {
-      const { JWT_ACCESS_TOKEN_SECRET, JWT_REFRESH_TOKEN_SECRET } =
-        await secrets_manager.getJwtWebTokenSecrets();
+user_router.use((req: Request<UserParams, NeverRecord, { refresh_token?: string }>, res, next) =>
+  catchNext(async () => {
+    const { JWT_ACCESS_TOKEN_SECRET, JWT_REFRESH_TOKEN_SECRET } =
+      await secrets_manager.getJwtWebTokenSecrets();
 
-      const access_token = req.headers.authorization?.split(" ")[1];
-      if (!access_token) throw UnauthenticatedError();
+    const access_token = req.headers.authorization?.split(" ")[1];
+    if (!access_token) throw UnauthenticatedError();
 
-      verify(access_token, JWT_ACCESS_TOKEN_SECRET, (err, payload) => {
-        if (err) {
-          if (!req.body.refresh_token) throw UnauthenticatedError();
-          verify(req.body.refresh_token, JWT_REFRESH_TOKEN_SECRET, (err, payload) => {
-            if (err) throw UnauthorizedError();
-            generateAccessToken(res, { id: (<JwtPayload>payload).id }, JWT_ACCESS_TOKEN_SECRET);
-          });
-          return next();
-        }
+    verify(access_token, JWT_ACCESS_TOKEN_SECRET, (err, payload) => {
+      if (err) {
+        if (!req.body.refresh_token) throw UnauthenticatedError();
+        verify(req.body.refresh_token, JWT_REFRESH_TOKEN_SECRET, (err, payload) => {
+          if (err) throw UnauthorizedError();
+          generateAccessToken(res, { id: (<JwtPayload>payload).id }, JWT_ACCESS_TOKEN_SECRET);
+        });
+        return next();
+      }
 
-        if (req.params.id !== (<JwtPayload>payload).id) throw UnauthorizedError();
-      });
+      if (req.params.id !== (<JwtPayload>payload).id) throw UnauthorizedError();
 
       next();
-    }, next)
+    });
+  }, next)
 );
 
 user_router.post("/logout", (_, res) => {
@@ -85,3 +94,19 @@ user_router.post("/logout", (_, res) => {
   res.clearCookie("refresh_token");
   res.sendStatus(204);
 });
+
+user_router.post(
+  "/reviews",
+  (req: Request<UserParams, BaseReview, UserReviewsPostBody>, res, next) =>
+    catchNext(
+      async () =>
+        res.send(
+          <BaseReview>(
+            (
+              await createReview({ user: req.params.id, ...validateUserReviewsPostBody(req.body) })
+            ).toJSON()
+          )
+        ),
+      next
+    )
+);

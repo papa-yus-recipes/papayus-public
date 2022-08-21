@@ -7,8 +7,10 @@ import type { QueryParam } from "routers/types";
 
 import { InvalidError } from "NextError";
 
+import { isUuid } from "./helpers";
+
 const validators: Validators<keyof RecipesGetParams | keyof RecipesScanQuery> = {
-  id: (v: string) => v.length === 36,
+  id: isUuid,
   operator: (v: QueryParam) => (<Operator[]>["AND", "OR"]).includes(<Operator>v),
   query: Boolean,
   tags: (v: string[]) => Boolean(v.length)
