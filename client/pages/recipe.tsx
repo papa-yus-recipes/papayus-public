@@ -55,7 +55,7 @@ getRecipe(new URLSearchParams(window.location.search).get("id") as string)
           </div>
           <Section title="Description">
             <div className="bg-light rounded-pill">
-              <img alt={name} className="d-flex mb-4 mx-auto" src={recipeImageUrl(id)} />
+              <img alt={name} className="d-flex mb-4 mx-auto shadow" src={recipeImageUrl(id)} />
             </div>
             <p dangerouslySetInnerHTML={{ __html: description }}></p>
           </Section>
@@ -76,7 +76,7 @@ getRecipe(new URLSearchParams(window.location.search).get("id") as string)
           </Section>
           <Section title="Ingredients">
             <h3 className="mb-3 text-center">Ingredients</h3>
-            <ul className="list-group list-group-flush mx-auto text-center">
+            <ul className="list-group list-group-flush mx-auto shadow-sm text-center">
               {ingredients.map((v, i) => (
                 <li className={`list-group-item ${isEven(i) && "bg-light"}`} key={i}>
                   {v.main}
